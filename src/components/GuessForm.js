@@ -5,7 +5,7 @@ class GuessForm extends Component  {
 
   state = {
     shuffledArray: [],
-    // currentTrack: '',
+    currentTrack: 0,
     trackGuess: ''
   }
 
@@ -18,16 +18,17 @@ class GuessForm extends Component  {
 
   }
 
-  renderSpotifySong = () => {
+  renderSpotifySongplayer = () => {
+    // wait for the shuffled array to load before loading the iframe
     if (this.state.shuffledArray[0]) {
       // Grab the first track for MVP. will use other tracks later.
-      let track1SpotifyID = this.state.shuffledArray[0].spotifyId
-      // console.log(this.state.shuffledArray[0].spotifyName)
-      // this.setState({currentTrack: this.state.shuffledArray[0].spotifyName})
+      let track1SpotifyID = this.state.shuffledArray[this.state.currentTrack].spotifyId
+      
       return <div className='spotify-player-div'>
-          <iframe title="spotify-player" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="250" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          </div>
-    } else {
+              Press play to start the timer! <br></br>
+              <iframe className='spotify-player-iframe' title="spotify-player" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="80" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+              </div>
+      } else {
       return <div>'Loading!'</div>
     }
     
@@ -52,12 +53,15 @@ class GuessForm extends Component  {
     // console.log('guess form tracks:', this.props.selectedPlaylist.tracks)
     console.log('guess form state:', this.state)
     
+    // if (document.querySelector('button')) {
+    //   document.querySelector('button').click()
+    // }
     return (
       <div className='GuessForm'>
         <h1>
           (GuessForm.js)
         </h1>
-        {this.renderSpotifySong()}
+        {this.renderSpotifySongplayer()}
         <form onSubmit={(e) => this.handleSubmit(e)}>
         <label>
           <input type="text" placeholder='Guess the Title' value={this.state.trackGuess} onChange={(e) => this.handleChange(e.target.value)} />
