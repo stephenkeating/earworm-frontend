@@ -100,12 +100,19 @@ class Game extends Component  {
   handleSubmit = (e) => {
     e.preventDefault();
     // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
-    if (this.state.filteredAndShuffledArray[0].spotifyName.replace(/[^\w]/g, '').toLowerCase() === this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()) {
+    let currentTrackSplitAtComma = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
+    let currentTrackBeforeDash = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
+    let currentTrackBeforeParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
+    console.log(currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
+    // let currentTrackAfterParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
+    let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
+    console.log(guess)
+    if (guess === currentTrackSplitAtComma || guess === currentTrackBeforeDash || guess === currentTrackBeforeParenthesis) {
       alert("You win!")
       this.setState({minutes: 0, seconds: 0})
     } else {
       alert("Guess Again...")
-      this.setState({minutes: 0, seconds: 0})
+      // this.setState({minutes: 0, seconds: 0})
     }
   }
 
