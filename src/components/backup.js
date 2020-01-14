@@ -5,7 +5,7 @@ class GuessForm extends Component  {
 
   state = {
     shuffledArray: [],
-    // currentTrack: '',
+    currentTrack: '',
     trackGuess: ''
   }
 
@@ -20,15 +20,12 @@ class GuessForm extends Component  {
 
   renderSpotifySong = () => {
     if (this.state.shuffledArray[0]) {
+
       // Grab the first track for MVP. will use other tracks later.
       let track1SpotifyID = this.state.shuffledArray[0].spotifyId
-      // console.log(this.state.shuffledArray[0].spotifyName)
-      // this.setState({currentTrack: this.state.shuffledArray[0].spotifyName})
-      return <div className='spotify-player-div'>
-          <iframe title="spotify-player" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="250" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          </div>
-    } else {
-      return <div>'Loading!'</div>
+      console.log(this.state.shuffledArray[0].spotifyName)
+      // this.setState({currentTrack: selected[0].spotifyName})
+      return <iframe title="test" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="250" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     }
     
   }
@@ -40,12 +37,8 @@ class GuessForm extends Component  {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state.trackGuess)
-    // console.log(this.state.shuffledArray[0].spotifyName.replace(/[^\w]/g, '').toLowerCase() === this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase())
-    if (this.state.shuffledArray[0].spotifyName.replace(/[^\w]/g, '').toLowerCase() === this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()) {
-      alert("You win!")
-    } else {
-      alert("Guess Again...")
-    }
+    console.log(this.state.currentTrack)
+    console.log(this.state.currentTrack === this.state.trackGuess)
   }
 
   render (){
