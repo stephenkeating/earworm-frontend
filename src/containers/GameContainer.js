@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import PlaylistForm from '../components/PlaylistForm.js';
-import GuessForm from '../components/GuessForm.js';
+import Game from '../components/Game.js';
 
 
 class GameContainer extends Component  {
 
   state = {
     playlists: [],
-    selectedPlaylist: {},
-    currentTrack: '',
-    trackGuess: ''
+    selectedPlaylist: {}
   }
 
   componentDidMount() {
     fetch(`http://localhost:3000/playlists`)
     .then(r => r.json())
-    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad, selectPlaylist: playlistsToLoad[0]}))
+    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad}))
     .catch(err => console.log(err))
   }
 
@@ -24,12 +22,10 @@ class GameContainer extends Component  {
   }
 
   render (){
-    console.log('game container state:', this.state)
+    // console.log('game container state:', this.state)
     return(
       <div className="game-container">
-        <h1>
-          (GameContainer.js)
-        </h1>
+        
         {!this.props.gameActive 
           ? <PlaylistForm 
             playlists={this.state.playlists}
@@ -37,7 +33,7 @@ class GameContainer extends Component  {
             selectPlaylist={this.selectPlaylist}
             playGame={this.props.playGame}
           />
-          : <GuessForm 
+          : <Game 
             selectedPlaylist={this.state.selectedPlaylist}
           />
         }

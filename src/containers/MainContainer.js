@@ -20,7 +20,7 @@ class MainContainer extends Component  {
     return(
       <div className="main-container">
         <h1>
-          Welcome to Earworm! (MainContainer.js)
+          EarWorm
         </h1>
         
         {/* user component */}

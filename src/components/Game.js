@@ -1,0 +1,122 @@
+import React, { Component } from "react";
+
+
+class Game extends Component  {
+
+  state = {
+    filteredAndShuffledArray: [],
+    currentTrack: 0,
+    trackGuess: '',
+    minutes: 0,
+    seconds: 30,
+    timerStarted: false
+  }
+
+  componentDidMount() {
+    // filter out tracks with skit in the title
+    const filtered = this.props.selectedPlaylist.tracks.filter(track => !track.spotifyName.toLowerCase().includes('skit'))
+    // Shuffle tracks
+    const shuffled = filtered.sort(() => 0.5 - Math.random());
+    // Get sub-array of first 5 elements after shuffling
+    let selected = shuffled.slice(0, 5)
+    this.setState({filteredAndShuffledArray: selected})
+    this.startCountdownTimer()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.startCountdownTimer)
+  }
+
+  // Countdown timer (could add minutes if need. setting at 30 seconds to start)
+  startCountdownTimer = () => {
+    if (!this.state.timerStarted) {
+      this.setState({timerStarted: true})
+      setInterval(() => {
+      if (this.state.seconds > 0) {
+        this.setState(({ seconds }) => ({
+          seconds: seconds - 1
+        }))
+      }
+      if (this.state.seconds === 0) {
+        if (this.state.minutes === 0) {
+          clearInterval(this.myInterval)
+        } else {
+          this.setState(({ minutes }) => ({
+            minutes: minutes - 1,
+            seconds: 59
+          }))
+        }
+      }
+      }, 1000)
+    }
+}
+
+  renderSpotifySongplayer = () => {
+    // wait for the shuffled array to load before loading the iframe
+    if (this.state.filteredAndShuffledArray[0]) {
+      // Grab the first track for MVP. will use other tracks later.
+      let track1SpotifyID = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyId
+      
+      if (this.state.minutes === 0 && this.state.seconds === 0) {
+        return <div className='times-up'>
+                  <div>
+                    <h1>
+                      Times Up!
+                    </h1>
+                  </div>
+                  <div>
+                    The track's title was:
+                    <br></br>
+                    {this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName}
+                  </div>
+                </div>
+        } else {
+          return <div className='game-timer-and-iframe'>
+                    <h1>
+                      Press play and guess the track's title before the timer runs out!
+                    </h1>
+                    <h1>
+                      Time Remaining: <br></br>
+                      { this.state.minutes }:{ this.state.seconds < 10 ? `0${ this.state.seconds }` : this.state.seconds }
+                    </h1>
+                    <div className='spotify-player-iframe' >
+                      <iframe title="spotify-player" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="80" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </div>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                      <label>
+                        <input type="text" placeholder='Guess the Title' value={this.state.trackGuess} onChange={(e) => this.handleChange(e.target.value)} />
+                      </label>
+                      <input className='submit-button' type="submit" value="Submit" />
+                    </form>
+                  </div>
+        }
+      } 
+  }
+  
+  handleChange = (value) => {
+    this.setState({trackGuess: value})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
+    if (this.state.filteredAndShuffledArray[0].spotifyName.replace(/[^\w]/g, '').toLowerCase() === this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()) {
+      alert("You win!")
+      this.setState({minutes: 0, seconds: 0})
+    } else {
+      alert("Guess Again...")
+      this.setState({minutes: 0, seconds: 0})
+    }
+  }
+
+  render (){
+    
+    return (
+      <div className='game'>
+        {this.renderSpotifySongplayer()}
+      </div>
+    )
+  }
+}
+
+export default Game;
