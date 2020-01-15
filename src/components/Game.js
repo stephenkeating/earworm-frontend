@@ -7,9 +7,9 @@ class Game extends Component  {
     filteredAndShuffledArray: [],
     currentTrack: 0,
     trackGuess: '',
-    minutes: 0,
-    seconds: 30,
-    timerStarted: false
+    seconds: 120,
+    timerStarted: false,
+    score: 0
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class Game extends Component  {
     // Shuffle tracks
     const shuffled = filtered.sort(() => 0.5 - Math.random());
     // Get sub-array of first 5 elements after shuffling
-    let selected = shuffled.slice(0, 5)
+    let selected = shuffled.slice(0, 10)
     this.setState({filteredAndShuffledArray: selected})
     this.startCountdownTimer()
   }
@@ -32,24 +32,12 @@ class Game extends Component  {
     if (!this.state.timerStarted) {
       this.setState({timerStarted: true})
       setInterval(() => {
-      if (this.state.seconds > 0) {
-        this.setState(({ seconds }) => ({
-          seconds: seconds - 1
-        }))
-      }
-      if (this.state.seconds === 0) {
-        if (this.state.minutes === 0) {
-          clearInterval(this.myInterval)
-        } else {
-          this.setState(({ minutes }) => ({
-            minutes: minutes - 1,
-            seconds: 59
-          }))
+        if (this.state.seconds > 0) {
+          this.setState(({ seconds: this.state.seconds - 1 }) )
         }
-      }
       }, 1000)
     }
-}
+  }
 
   renderSpotifySongplayer = () => {
     // wait for the shuffled array to load before loading the iframe
@@ -57,11 +45,12 @@ class Game extends Component  {
       // Grab the first track for MVP. will use other tracks later.
       let track1SpotifyID = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyId
       
-      if (this.state.minutes === 0 && this.state.seconds === 0) {
+      if (this.state.seconds === 0) {
         return <div className='times-up'>
                   <div>
                     <h1>
-                      Times Up!
+                      Times Up! <br></br>
+                      You guessed {this.state.score} songs correctly
                     </h1>
                   </div>
                   <div>
@@ -76,8 +65,8 @@ class Game extends Component  {
                       Press play and guess the track's title before the timer runs out!
                     </h1>
                     <h1>
-                      Time Remaining: <br></br>
-                      { this.state.minutes }:{ this.state.seconds < 10 ? `0${ this.state.seconds }` : this.state.seconds }
+                      Seconds Remaining: <br></br>
+                      { this.state.seconds < 10 ? `0${ this.state.seconds }` : this.state.seconds }
                     </h1>
                     <div className='spotify-player-iframe' >
                       <iframe title="spotify-player" src={`https://open.spotify.com/embed/track/${track1SpotifyID}`} width="80" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -108,11 +97,11 @@ class Game extends Component  {
     let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
     console.log(guess)
     if (guess === currentTrackSplitAtComma || guess === currentTrackBeforeDash || guess === currentTrackBeforeParenthesis) {
-      alert("You win!")
-      this.setState({minutes: 0, seconds: 0})
+      alert("You got it!")
+      this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
       alert("Guess Again...")
-      // this.setState({minutes: 0, seconds: 0})
+      this.setState({ seconds: this.state.seconds - 5})
     }
   }
 
