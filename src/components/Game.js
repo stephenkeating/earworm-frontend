@@ -62,9 +62,9 @@ class Game extends Component  {
                     </h1>
                   </div>
                   <div>
-                    The last track's title was:
+                    The last track was:
                     <br></br>
-                    {this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName}
+                    {this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName} by {this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyArtists}
                   </div>
                 </div>
         } else {
@@ -108,9 +108,9 @@ class Game extends Component  {
     // let currentTrackAfterParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
     let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
     let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
-    // console.log(jarowBeforePunctuationScore)
+    console.log(jarowBeforePunctuationScore)
     let jarowWholeStringScore = distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName, { caseSensitive: false })
-    // console.log(jarowWholeStringScore)
+    console.log(jarowWholeStringScore)
     // console.log('user\'s guess:', guess)
     // Testing various jaro-winkler scores:
       // console.log(distance(guess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.replace(/[^\w]/g, ''), { caseSensitive: false })) 
@@ -123,9 +123,9 @@ class Game extends Component  {
       || guess === currentTrackBeforeDash 
       || guess === currentTrackBeforeParenthesis 
       || guess === currentTrackBeforePtPeriod 
-      || jarowBeforePunctuationScore > .75 
-      || jarowWholeStringScore > .75) {
-      alert("You got it!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName)
+      || jarowBeforePunctuationScore > .9
+      || jarowWholeStringScore > .85) {
+      alert("You got it!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName + ' by ' + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyArtists)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
       alert("Guess Again...\n2 seconds deducted")

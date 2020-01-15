@@ -13,7 +13,8 @@ class GameContainer extends Component  {
   componentDidMount() {
     fetch(`http://localhost:3000/playlists`)
     .then(r => r.json())
-    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad}))
+    // sort playlists by displayName before throwing them into state
+    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['displayName'].localeCompare(b['displayName']))}))
     .catch(err => console.log(err))
   }
 
@@ -22,7 +23,7 @@ class GameContainer extends Component  {
   }
 
   render (){
-    // console.log('game container state:', this.state)
+    console.log('game container state:', this.state.playlists)
     return(
       <div className="game-container">
         
