@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import distance from 'jaro-winkler';
+
 
 
 class Game extends Component  {
@@ -102,11 +104,27 @@ class Game extends Component  {
     let currentTrackBeforeParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
     // not working: let currentTrackBetweenParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0] ? this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName
     let currentTrackBeforePtPeriod = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
-    console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
+    // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
     // let currentTrackAfterParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
     let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
-    console.log('user\'s guess:', guess)
-    if (guess === currentTrackSplitAtComma || guess === currentTrackBeforeDash || guess === currentTrackBeforeParenthesis || guess === currentTrackBeforePtPeriod) {
+    let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
+    // console.log(jarowBeforePunctuationScore)
+    let jarowWholeStringScore = distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName, { caseSensitive: false })
+    // console.log(jarowWholeStringScore)
+    // console.log('user\'s guess:', guess)
+    // Testing various jaro-winkler scores:
+      // console.log(distance(guess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.replace(/[^\w]/g, ''), { caseSensitive: false })) 
+      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.replace(/[^\w]/g, ''), { caseSensitive: false })) 
+      // console.log(distance(guess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName, { caseSensitive: false })) 
+      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName, { caseSensitive: false })) 
+      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName, { caseSensitive: false })) 
+      // console.log(distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })) 
+    if (guess === currentTrackSplitAtComma
+      || guess === currentTrackBeforeDash 
+      || guess === currentTrackBeforeParenthesis 
+      || guess === currentTrackBeforePtPeriod 
+      || jarowBeforePunctuationScore > .75 
+      || jarowWholeStringScore > .75) {
       alert("You got it!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
