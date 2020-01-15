@@ -17,9 +17,9 @@ class Game extends Component  {
     const filtered = this.props.selectedPlaylist.tracks.filter(track => !track.spotifyName.toLowerCase().includes('skit'))
     // Shuffle tracks
     const shuffled = filtered.sort(() => 0.5 - Math.random());
-    // Get sub-array of first 5 elements after shuffling
-    let selected = shuffled.slice(0, 10)
-    this.setState({filteredAndShuffledArray: selected})
+    // Get sub-array of first 5 elements after shuffling. (Decided to use all tracks rather than just 5)
+    // let selected = shuffled.slice(0, 10)
+    this.setState({filteredAndShuffledArray: shuffled})
     this.startCountdownTimer()
   }
 
@@ -39,22 +39,28 @@ class Game extends Component  {
     }
   }
 
+  handleSkip = () => {
+    alert("Skipped!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName)
+      this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
+  }
+  
+
   renderSpotifySongplayer = () => {
     // wait for the shuffled array to load before loading the iframe
     if (this.state.filteredAndShuffledArray[0]) {
       // Grab the first track for MVP. will use other tracks later.
       let track1SpotifyID = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyId
       
-      if (this.state.seconds === 0) {
+      if (this.state.seconds <= 0) {
         return <div className='times-up'>
                   <div>
                     <h1>
                       Times Up! <br></br>
-                      You guessed {this.state.score} songs correctly
+                      You correctly guessed {this.state.score} song(s)
                     </h1>
                   </div>
                   <div>
-                    The track's title was:
+                    The last track's title was:
                     <br></br>
                     {this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName}
                   </div>
@@ -77,6 +83,8 @@ class Game extends Component  {
                       </label>
                       <input className='submit-button' type="submit" value="Submit" />
                     </form>
+                    <br></br>
+                    <button className='skip-button' onClick={this.handleSkip}>Skip (5 second penalty)</button>
                   </div>
         }
       } 
@@ -92,21 +100,23 @@ class Game extends Component  {
     let currentTrackSplitAtComma = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
     let currentTrackBeforeDash = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
     let currentTrackBeforeParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
-    console.log(currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
+    // not working: let currentTrackBetweenParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[0] ? this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName
+    let currentTrackBeforePtPeriod = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
+    console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
     // let currentTrackAfterParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
     let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
-    console.log(guess)
-    if (guess === currentTrackSplitAtComma || guess === currentTrackBeforeDash || guess === currentTrackBeforeParenthesis) {
-      alert("You got it!")
+    console.log('user\'s guess:', guess)
+    if (guess === currentTrackSplitAtComma || guess === currentTrackBeforeDash || guess === currentTrackBeforeParenthesis || guess === currentTrackBeforePtPeriod) {
+      alert("You got it!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
-      alert("Guess Again...")
-      this.setState({ seconds: this.state.seconds - 5})
+      alert("Guess Again...\n2 seconds deducted")
+      this.setState({ seconds: this.state.seconds - 2})
     }
   }
 
   render (){
-    
+    console.log(this.state.filteredAndShuffledArray[this.state.currentTrack] ? this.state.filteredAndShuffledArray[this.state.currentTrack].spotifyName : '')
     return (
       <div className='game'>
         {this.renderSpotifySongplayer()}
