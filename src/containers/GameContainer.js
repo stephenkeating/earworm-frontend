@@ -31,10 +31,7 @@ class GameContainer extends Component  {
       }
     })
       .then(r => r.json())
-      .then(currentGame => {
-        console.log('hi from fetch', currentGame)
-        this.setState({currentGame: currentGame}); 
-      })
+      .then(currentGame => {this.setState({currentGame: currentGame})})
       .catch(err => console.log(err))
   }
 
@@ -56,6 +53,7 @@ class GameContainer extends Component  {
           />
           : <Game 
             selectedPlaylist={this.state.selectedPlaylist}
+            currentGame={this.state.currentGame}
           />
         }
         

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import distance from 'jaro-winkler';
 
-
-
 class Game extends Component  {
 
   state = {

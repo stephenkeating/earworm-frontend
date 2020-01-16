@@ -13,7 +13,7 @@ const PlaylistForm = (props) => {
           Select A Playlist
         </h1>
         <select className='playlist-select-dropdown' value={props.selectedPlaylist.name} onChange={(e) => props.selectPlaylist(e.target.value)}>
-          <option className='playlist-select-option' defaultValue value='select'>select</option>
+          <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>
           {renderPlaylistFormOptions()}
         </select>
         <br></br>
