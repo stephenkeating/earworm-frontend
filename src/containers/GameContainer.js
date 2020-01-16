@@ -13,13 +13,13 @@ class GameContainer extends Component  {
   componentDidMount() {
     fetch(`http://localhost:3000/playlists`)
     .then(r => r.json())
-    // sort playlists by displayName before throwing them into state
-    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['displayName'].localeCompare(b['displayName']))}))
+    // sort playlists by name before throwing them into state
+    .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['name'].localeCompare(b['name']))}))
     .catch(err => console.log(err))
   }
 
   selectPlaylist = (selectedPlaylist) => {
-    this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.displayName === selectedPlaylist)})
+    this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
   }
 
   render (){
