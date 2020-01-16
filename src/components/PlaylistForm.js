@@ -6,7 +6,6 @@ const PlaylistForm = (props) => {
     return props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name}</option>)
     
   }
-    // console.log('playlist form props:', props)
   
     return (
       <div className='PlaylistForm'>

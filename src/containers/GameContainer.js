@@ -7,7 +7,9 @@ class GameContainer extends Component  {
 
   state = {
     playlists: [],
-    selectedPlaylist: {}
+    selectedPlaylist: {},
+    gameActive: false,
+    currentGame: {}
   }
 
   componentDidMount() {
@@ -18,21 +20,39 @@ class GameContainer extends Component  {
     .catch(err => console.log(err))
   }
 
+  playGame = () => {
+    this.setState({gameActive: !this.state.gameActive})
+
+    fetch(`http://localhost:3000/games`, {
+      method:'POST',
+      headers: { 
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      }
+    })
+      .then(r => r.json())
+      .then(currentGame => {
+        console.log('hi from fetch', currentGame)
+        this.setState({currentGame: currentGame}); 
+      })
+      .catch(err => console.log(err))
+  }
+
   selectPlaylist = (selectedPlaylist) => {
     this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
   }
 
   render (){
-    console.log('game container state:', this.state.playlists)
+    console.log('game container state:', this.state)
     return(
       <div className="game-container">
         
-        {!this.props.gameActive 
+        {!this.state.gameActive 
           ? <PlaylistForm 
             playlists={this.state.playlists}
             selectedPlaylist={this.state.selectedPlaylist}
             selectPlaylist={this.selectPlaylist}
-            playGame={this.props.playGame}
+            playGame={this.playGame}
           />
           : <Game 
             selectedPlaylist={this.state.selectedPlaylist}

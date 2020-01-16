@@ -5,14 +5,11 @@ import GameContainer from '../containers/GameContainer.js';
 
 class MainContainer extends Component  {
 
-  state = {
-    currentUser: {},
-    gameActive: false
-  }
+  // state = {
+  //   currentUser: {},
+  //   gameActive: false
+  // }
 
-  playGame = () => {
-    this.setState({gameActive: !this.state.gameActive})
-  }
   
 
   render (){
@@ -25,8 +22,8 @@ class MainContainer extends Component  {
         
         {/* user component */}
         <GameContainer 
-          gameActive={this.state.gameActive}
-          playGame={this.playGame}
+          // gameActive={this.state.gameActive}
+          // playGame={this.playGame}
         />
         {/* results splash component*/}
       </div>
