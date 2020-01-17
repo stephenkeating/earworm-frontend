@@ -9,8 +9,7 @@ class Game extends Component  {
     trackGuess: '',
     seconds: 120,
     timerStarted: false,
-    score: 0,
-    playedTracks: []
+    score: 0
   }
 
   componentDidMount() {
@@ -22,6 +21,26 @@ class Game extends Component  {
     // let selected = shuffled.slice(0, 10)
     this.setState({gameTracks: shuffled})
     this.startCountdownTimer()
+  }
+
+  trackOutcome = (outcome) => {
+    fetch(`http://localhost:3000/answers`, {
+      method:'POST',
+      headers: { 
+        'content-type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify({
+        game_id: this.props.currentGame.id,
+        track_id: this.state.gameTracks[this.state.currentTrack].id,
+        outcome: outcome
+      })
+    })
+      .then(r => r.json())
+      .then(json_resp => {
+        console.log(json_resp)
+      })
+      .catch(err => console.log(err))
   }
 
   componentWillUnmount() {
@@ -41,6 +60,7 @@ class Game extends Component  {
   }
 
   handleSkip = () => {
+    this.trackOutcome('skipped')
     alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
   }
@@ -117,6 +137,7 @@ class Game extends Component  {
       || guess === currentTrackBeforePtPeriod 
       || jarowBeforePunctuationScore > .9
       || jarowWholeStringScore > .85) {
+      this.trackOutcome('correct')
       alert("You got it!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
@@ -127,6 +148,8 @@ class Game extends Component  {
   
   render (){
     console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
+    console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
+    console.log(this.props.currentGame)
     return (
       <div className='game'>
         {this.renderSpotifySongplayer()}
