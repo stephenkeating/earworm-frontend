@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GameContainer from '../containers/GameContainer.js';
+import BodyContainer from '../containers/BodyContainer.js';
 
 
 
@@ -20,7 +20,7 @@ class MainContainer extends Component  {
         </h1>
         
         {/* user component */}
-        <GameContainer 
+        <BodyContainer 
           // playGame={this.playGame}
         />
         {/* results splash component*/}
