@@ -11,8 +11,8 @@ class GameContainer extends Component  {
     currentTrack: 0,
     trackGuess: '',
     seconds: 120,
-    score: 0,
-    counterID: ''
+    counterID: '',
+    flashMessage: ''
   }
 
   componentDidMount() {
@@ -70,6 +70,7 @@ class GameContainer extends Component  {
 
   handleSkip = () => {
     this.trackOutcome('Skipped')
+    this.setState({flashMessage: ("Skipped! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
     // alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
     this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
   }
@@ -113,13 +114,12 @@ class GameContainer extends Component  {
       || jarowWholeStringScore > .85) {
       this.trackOutcome('Earworm!')
       // alert("You got it!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
-      this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
+      this.setState({flashMessage: ("You got it! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
+      this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: ''})
     } else {
       // alert("Guess Again...\n2 seconds deducted")
+      this.setState({flashMessage: ("Guess Again...2 seconds deducted")})
       this.setState({ seconds: this.state.seconds - 2})
-      // this.setState(prevState => {
-      //   return { seconds: prevState.seconds - 2 } 
-      // })
     }
   }
 
@@ -142,6 +142,10 @@ class GameContainer extends Component  {
           handleSkip={this.handleSkip}
           handleSubmit={this.handleSubmit}
         />
+        <br></br>
+        <div className='flash-message'>
+          {this.state.flashMessage}
+        </div>
       </div>
     )
   }

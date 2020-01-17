@@ -22,19 +22,3 @@ const ResultsSplash = (props) => {
 }
 
 export default ResultsSplash;
-
-
-//from old game component:
-      // return <div className='times-up'>
-        //           <div>
-        //             <h1>
-        //               Times Up! <br></br>
-        //               You correctly guessed {this.state.score} song(s)
-        //             </h1>
-        //           </div>
-        //           <div>
-        //             The last track was:
-        //             <br></br>
-        //             {this.state.gameTracks[this.state.currentTrack].name} by {this.state.gameTracks[this.state.currentTrack].artists}
-        //           </div>
-        //         </div>
