@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PlaylistForm from '../components/PlaylistForm.js';
 import Game from '../components/Game.js';
+import ResultsSplash from '../components/ResultsSplash';
 
 
 class GameContainer extends Component  {
@@ -8,7 +9,8 @@ class GameContainer extends Component  {
   state = {
     playlists: [],
     selectedPlaylist: {},
-    gameActive: false,
+    // gameStatus is 'pre' when selecting playlist, 'active' when playing, 'post' when showing results
+    gameStatus: 'pre',
     currentGame: {}
   }
 
@@ -19,9 +21,18 @@ class GameContainer extends Component  {
     .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['name'].localeCompare(b['name']))}))
     .catch(err => console.log(err))
   }
+  
+  // sent down to PlaylistForm component
+  selectPlaylist = (selectedPlaylist) => {
+    // prevent the user from breaking the app by going back to the select option in the dropdown
+    if (selectedPlaylist !== 'select'){
+      this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
+    }
+  }
 
+  // sent down to PlaylistForm component and starts the game
   playGame = () => {
-    this.setState({gameActive: !this.state.gameActive})
+    this.setState({gameStatus: 'active'})
 
     fetch(`http://localhost:3000/games`, {
       method:'POST',
@@ -35,31 +46,38 @@ class GameContainer extends Component  {
       .catch(err => console.log(err))
   }
 
-  selectPlaylist = (selectedPlaylist) => {
-    // prevent the user from breaking the app by going back to the select option in the dropdown
-    if (selectedPlaylist !== 'select'){
-      this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
-    }
+  // sent down to Game component
+  showResults = () => {
+    this.setState({gameStatus: 'post'})
   }
-
-  render (){
-    console.log('game container state:', this.state)
-    return(
-      <div className="game-container">
-        
-        {!this.state.gameActive 
-          ? <PlaylistForm 
+  
+  // renders component based on this.state.gameStatus
+  renderGameStatus = () => {
+    if (this.state.gameStatus === 'pre') {
+      return <PlaylistForm 
             playlists={this.state.playlists}
             selectedPlaylist={this.state.selectedPlaylist}
             selectPlaylist={this.selectPlaylist}
             playGame={this.playGame}
-          />
-          : <Game 
+      />
+    } else if (this.state.gameStatus === 'active') {
+      return <Game 
             selectedPlaylist={this.state.selectedPlaylist}
             currentGame={this.state.currentGame}
+            showResults={this.showResults}
           />
-        }
-        
+    } else if (this.state.gameStatus === 'post') {
+      return <ResultsSplash
+          />
+    }
+  }
+  
+
+  render (){
+    // console.log('game container state:', this.state)
+    return(
+      <div className="game-container">
+        {this.renderGameStatus()}
       </div>
     )
   }

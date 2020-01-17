@@ -6,8 +6,7 @@ import GameContainer from '../containers/GameContainer.js';
 class MainContainer extends Component  {
 
   // state = {
-  //   currentUser: {},
-  //   gameActive: false
+  //   currentUser: {}
   // }
 
   
@@ -22,7 +21,6 @@ class MainContainer extends Component  {
         
         {/* user component */}
         <GameContainer 
-          // gameActive={this.state.gameActive}
           // playGame={this.playGame}
         />
         {/* results splash component*/}

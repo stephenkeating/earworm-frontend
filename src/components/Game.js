@@ -23,6 +23,7 @@ class Game extends Component  {
     this.startCountdownTimer()
   }
 
+  // Think about moving the 'answer' post to the end of the game for a one-time create of all outcomes
   trackOutcome = (outcome) => {
     fetch(`http://localhost:3000/answers`, {
       method:'POST',
@@ -37,9 +38,7 @@ class Game extends Component  {
       })
     })
       .then(r => r.json())
-      .then(json_resp => {
-        console.log(json_resp)
-      })
+      .then(json_resp => {console.log(json_resp)})
       .catch(err => console.log(err))
   }
 
@@ -73,19 +72,20 @@ class Game extends Component  {
       let currentTrackSpotifyId = this.state.gameTracks[this.state.currentTrack].spotify_id
       
       if (this.state.seconds <= 0) {
-        return <div className='times-up'>
-                  <div>
-                    <h1>
-                      Times Up! <br></br>
-                      You correctly guessed {this.state.score} song(s)
-                    </h1>
-                  </div>
-                  <div>
-                    The last track was:
-                    <br></br>
-                    {this.state.gameTracks[this.state.currentTrack].name} by {this.state.gameTracks[this.state.currentTrack].artists}
-                  </div>
-                </div>
+        this.props.showResults()
+        // return <div className='times-up'>
+        //           <div>
+        //             <h1>
+        //               Times Up! <br></br>
+        //               You correctly guessed {this.state.score} song(s)
+        //             </h1>
+        //           </div>
+        //           <div>
+        //             The last track was:
+        //             <br></br>
+        //             {this.state.gameTracks[this.state.currentTrack].name} by {this.state.gameTracks[this.state.currentTrack].artists}
+        //           </div>
+        //         </div>
         } else {
           return <div className='game-timer-and-iframe'>
                     <h1>
@@ -147,9 +147,9 @@ class Game extends Component  {
   }
   
   render (){
-    console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
-    console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
-    console.log(this.props.currentGame)
+    // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
+    // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
+    // console.log(this.props.currentGame)
     return (
       <div className='game'>
         {this.renderSpotifySongplayer()}
