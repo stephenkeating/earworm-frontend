@@ -55,7 +55,10 @@ class BodyContainer extends Component  {
   addTrackToTrackOutcomes = (trackObject) => {
     this.setState({trackOutcomes: [...this.state.trackOutcomes, trackObject]})
   }
-  
+
+  playAgain = () =>{
+    this.setState({gameStatus: 'pre', trackOutcomes: []})
+  }
   
   // renders component based on this.state.gameStatus
   renderGameStatus = () => {
@@ -76,7 +79,7 @@ class BodyContainer extends Component  {
     } else if (this.state.gameStatus === 'post') {
       return <ResultsSplash
               trackOutcomes={this.state.trackOutcomes}
-              
+              playAgain={this.playAgain}
             />
     }
   }
