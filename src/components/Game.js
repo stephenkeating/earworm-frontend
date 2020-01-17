@@ -4,12 +4,13 @@ import distance from 'jaro-winkler';
 class Game extends Component  {
 
   state = {
-    filteredAndShuffledArray: [],
+    gameTracks: [],
     currentTrack: 0,
     trackGuess: '',
     seconds: 120,
     timerStarted: false,
-    score: 0
+    score: 0,
+    playedTracks: []
   }
 
   componentDidMount() {
@@ -19,7 +20,7 @@ class Game extends Component  {
     const shuffled = filtered.sort(() => 0.5 - Math.random());
     // Get sub-array of first 5 elements after shuffling. (Decided to use all tracks rather than just 5)
     // let selected = shuffled.slice(0, 10)
-    this.setState({filteredAndShuffledArray: shuffled})
+    this.setState({gameTracks: shuffled})
     this.startCountdownTimer()
   }
 
@@ -27,7 +28,7 @@ class Game extends Component  {
     clearInterval(this.startCountdownTimer)
   }
 
-  // Countdown timer (could add minutes if need. setting at 30 seconds to start)
+  // Countdown timer (could add minutes if needed. Set at 30 seconds to start)
   startCountdownTimer = () => {
     if (!this.state.timerStarted) {
       this.setState({timerStarted: true})
@@ -40,16 +41,16 @@ class Game extends Component  {
   }
 
   handleSkip = () => {
-    alert("Skipped!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].name)
+    alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
   }
   
 
   renderSpotifySongplayer = () => {
     // wait for the shuffled array to load before loading the iframe
-    if (this.state.filteredAndShuffledArray[0]) {
+    if (this.state.gameTracks[0]) {
       // Grab the current track for the iframe
-      let currentTrackSpotifyId = this.state.filteredAndShuffledArray[this.state.currentTrack].spotify_id
+      let currentTrackSpotifyId = this.state.gameTracks[this.state.currentTrack].spotify_id
       
       if (this.state.seconds <= 0) {
         return <div className='times-up'>
@@ -62,7 +63,7 @@ class Game extends Component  {
                   <div>
                     The last track was:
                     <br></br>
-                    {this.state.filteredAndShuffledArray[this.state.currentTrack].name} by {this.state.filteredAndShuffledArray[this.state.currentTrack].artists}
+                    {this.state.gameTracks[this.state.currentTrack].name} by {this.state.gameTracks[this.state.currentTrack].artists}
                   </div>
                 </div>
         } else {
@@ -97,42 +98,35 @@ class Game extends Component  {
   handleSubmit = (e) => {
     e.preventDefault();
     // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
-    let currentTrackSplitAtComma = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
-    let currentTrackBeforeDash = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
-    let currentTrackBeforeParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
-    // not working: let currentTrackBetweenParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[0] ? this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.filteredAndShuffledArray[this.state.currentTrack].name
-    let currentTrackBeforePtPeriod = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
+    let currentTrackSplitAtComma = this.state.gameTracks[this.state.currentTrack].name.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
+    let currentTrackBeforeDash = this.state.gameTracks[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
+    let currentTrackBeforeParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
+    // not working: let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1] ? this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.gameTracks[this.state.currentTrack].name
+    let currentTrackBeforePtPeriod = this.state.gameTracks[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
     // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
-    // let currentTrackAfterParenthesis = this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
+    // let currentTrackAfterParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
     let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
-    let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
-    console.log(jarowBeforePunctuationScore)
-    let jarowWholeStringScore = distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].name, { caseSensitive: false })
-    console.log(jarowWholeStringScore)
+    let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
+    // console.log(jarowBeforePunctuationScore)
+    let jarowWholeStringScore = distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })
+    // console.log(jarowWholeStringScore)
     // console.log('user\'s guess:', guess)
-    // Testing various jaro-winkler scores:
-      // console.log(distance(guess, this.state.filteredAndShuffledArray[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
-      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
-      // console.log(distance(guess, this.state.filteredAndShuffledArray[this.state.currentTrack].name, { caseSensitive: false })) 
-      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].name, { caseSensitive: false })) 
-      // console.log(distance(this.state.trackGuess, this.state.filteredAndShuffledArray[this.state.currentTrack].name, { caseSensitive: false })) 
-      // console.log(distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.filteredAndShuffledArray[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })) 
     if (guess === currentTrackSplitAtComma
       || guess === currentTrackBeforeDash 
       || guess === currentTrackBeforeParenthesis 
       || guess === currentTrackBeforePtPeriod 
       || jarowBeforePunctuationScore > .9
       || jarowWholeStringScore > .85) {
-      alert("You got it!\nThat song was:\n" + this.state.filteredAndShuffledArray[this.state.currentTrack].name + ' by ' + this.state.filteredAndShuffledArray[this.state.currentTrack].artists)
+      alert("You got it!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', score: this.state.score + 1})
     } else {
       alert("Guess Again...\n2 seconds deducted")
       this.setState({ seconds: this.state.seconds - 2})
     }
   }
-
+  
   render (){
-    console.log(this.state.filteredAndShuffledArray[this.state.currentTrack] ? this.state.filteredAndShuffledArray[this.state.currentTrack].name : '')
+    console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
     return (
       <div className='game'>
         {this.renderSpotifySongplayer()}
@@ -142,3 +136,11 @@ class Game extends Component  {
 }
 
 export default Game;
+
+// Testing of various jaro-winkler scores:
+  // console.log(distance(guess, this.state.gameTracks[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
+  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
+  // console.log(distance(guess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
+  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
+  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
+  // console.log(distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })) 

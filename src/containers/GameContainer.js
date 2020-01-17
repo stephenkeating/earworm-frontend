@@ -36,7 +36,10 @@ class GameContainer extends Component  {
   }
 
   selectPlaylist = (selectedPlaylist) => {
-    this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
+    // prevent the user from breaking the app by going back to the select option in the dropdown
+    if (selectedPlaylist !== 'select'){
+      this.setState({selectedPlaylist: this.state.playlists.find (playlist => playlist.name === selectedPlaylist)})
+    }
   }
 
   render (){
