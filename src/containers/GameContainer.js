@@ -10,9 +10,11 @@ class GameContainer extends Component  {
     gameTracks: [],
     currentTrack: 0,
     trackGuess: '',
-    seconds: 3,
+    seconds: 300,
     counterID: '',
-    flashMessage: ''
+    flashMessage: '',
+    flashVisible: false,
+    flashTimeoutID: ''
   }
 
   componentDidMount() {
@@ -34,8 +36,10 @@ class GameContainer extends Component  {
     }
   }
   
+  // right now I'm only clearing the final flash message timeout. could throw an error 
   componentWillUnmount() {
     clearInterval(this.state.counterID)
+    clearTimeout(this.state.flashTimeoutID)
   }
 
   // Think about moving the 'answer' post to the end of the game for a one-time create of all outcomes
@@ -68,11 +72,21 @@ class GameContainer extends Component  {
     this.setState({counterID})
   }
 
+  showFlashMessage = (message) => {
+    this.setState({flashMessage: message, flashVisible: true})
+    let flashTimeoutID = setTimeout(() => {
+      this.setState({flashVisible: false})
+    }, 3000)
+    this.setState({flashTimeoutID})
+  }
+  
+
   handleSkip = () => {
     this.trackOutcome('Skipped')
-    this.setState({flashMessage: ("Skipped! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
+    // this.setState({flashMessage: ("Skipped! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
     // alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
-    this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
+    this.setState({visible: true, currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
+    this.showFlashMessage("Skipped: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
   }
 
   renderSpotifySongplayer = () => {
@@ -113,13 +127,11 @@ class GameContainer extends Component  {
       || jarowBeforePunctuationScore > .9
       || jarowWholeStringScore > .85) {
       this.trackOutcome('Earworm!')
-      // alert("You got it!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
-      this.setState({flashMessage: ("You got it! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
       this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: ''})
+      this.showFlashMessage("Earworm! " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
     } else {
-      // alert("Guess Again...\n2 seconds deducted")
-      this.setState({flashMessage: ("Guess Again...2 seconds deducted")})
       this.setState({ seconds: this.state.seconds - 2})
+      this.showFlashMessage("Guess Again...2 seconds deducted")
     }
   }
 
@@ -127,6 +139,7 @@ class GameContainer extends Component  {
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
     // console.log(this.props.currentGame)
+    console.log(this.state)
     return (
       <div className='game'>
         <h1>
@@ -143,7 +156,7 @@ class GameContainer extends Component  {
           handleSubmit={this.handleSubmit}
         />
         <br></br>
-        <div className='flash-message'>
+        <div className={this.state.flashVisible ? 'fadeIn flash-message' : 'fadeOut flash-message'}>
           {this.state.flashMessage}
         </div>
       </div>

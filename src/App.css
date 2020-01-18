@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+/* attempt 1 */
+/* .fadeOut{
+  opacity:0;
+  transition: opacity 5s;
+} */
+
+/* attempt 2 */
+/* .fadeIn {
+  -webkit-animation-duration: 10s;animation-duration: 10s;
+  -webkit-animation-fill-mode: both;animation-fill-mode: both;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@-webkit-keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* .fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+} */
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* attempt 3 */
+.fadeIn
+{
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s linear;
+}                
+/* Fade-Out Effect */
+.fadeOut
+{
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 2s, opacity 2s linear;
+}     
