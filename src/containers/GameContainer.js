@@ -10,7 +10,7 @@ class GameContainer extends Component  {
     gameTracks: [],
     currentTrack: 0,
     trackGuess: '',
-    seconds: 120,
+    seconds: 3,
     counterID: '',
     flashMessage: ''
   }

@@ -40,7 +40,10 @@ class BodyContainer extends Component  {
       headers: { 
         'content-type': 'application/json',
         'accept': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        playlist_id: this.state.selectedPlaylist.id
+      })
     })
       .then(r => r.json())
       .then(currentGame => {this.setState({currentGame: currentGame})})
@@ -79,6 +82,7 @@ class BodyContainer extends Component  {
     } else if (this.state.gameStatus === 'post') {
       return <ResultsSplash
               trackOutcomes={this.state.trackOutcomes}
+              currentGame={this.state.currentGame}
               playAgain={this.playAgain}
             />
     }

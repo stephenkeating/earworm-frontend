@@ -9,7 +9,7 @@ const GuessForm = (props) => {
           <label>
             <input type="text" placeholder='Guess the Title' value={props.trackGuess} onChange={(e) => props.handleChange(e.target.value)} />
           </label>
-          <input className='submit-button' type="submit" value="Submit" />
+          <input className='submit-guess-button' type="submit" value="Submit" />
         </form>
         <br></br>
         <button className='skip-button' onClick={props.handleSkip}>Skip (5 second penalty)</button>
