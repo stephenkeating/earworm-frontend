@@ -8,9 +8,12 @@ const PlaylistForm = (props) => {
   
     return (
       <div className='PlaylistForm'>
-        <h1>
+        <div className='playlist-instructions-header'>
           Select A Playlist
-        </h1>
+        </div>
+        <div className='playlist-instructions-body'>
+          Once you press play, you'll have two minutes to guess the title of as many songs as possible.
+        </div>
         <select className='playlist-select-dropdown' value={props.selectedPlaylist.name} onChange={(e) => props.selectPlaylist(e.target.value)}>
           <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>
           {renderPlaylistFormOptions()}

@@ -2,6 +2,8 @@ import React from "react";
 
 const GuessForm = (props) => {
   
+  // Need to implement a focus on the input text area
+
     return (
      
       <div className='guess-form'>

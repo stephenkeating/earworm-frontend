@@ -10,7 +10,7 @@ class GameContainer extends Component  {
     gameTracks: [],
     currentTrack: 0,
     trackGuess: '',
-    seconds: 300,
+    seconds: 120,
     counterID: '',
     flashMessage: '',
     flashVisible: false,
@@ -79,7 +79,6 @@ class GameContainer extends Component  {
     }, 3000)
     this.setState({flashTimeoutID})
   }
-  
 
   handleSkip = () => {
     this.trackOutcome('Skipped')
