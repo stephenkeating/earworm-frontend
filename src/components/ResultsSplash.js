@@ -7,6 +7,10 @@ class ResultsSplash extends Component  {
     user: ''
   }
 
+  componentDidMount(){
+    this.nameInput.focus();
+  }
+
   renderTrackResults = () => {
     return this.props.trackOutcomes.map(outcome => {
       return <div className='track-outcome' key={outcome.id}>
@@ -45,7 +49,7 @@ class ResultsSplash extends Component  {
         <div className='save-game-form'>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <label>
-              <input type="text" placeholder='Enter Your Name' value={this.state.user} onChange={(e) => this.handleChange(e.target.value)} />
+              <input ref={(input) => { this.nameInput = input; }} type="text" placeholder='Enter Your Name' value={this.state.user} onChange={(e) => this.handleChange(e.target.value)} />
             </label>
             <input className='submit-results-button' type="submit" value={this.state.buttonLabel} />
           </form>

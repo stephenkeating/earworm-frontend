@@ -1,11 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 
-const PlaylistForm = (props) => {
+class PlaylistForm extends Component{
+  componentDidMount(){
+    this.selectPlaylist.focus();
+  }
 
-  const renderPlaylistFormOptions = () => {
-    return props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name}</option>)
+  renderPlaylistFormOptions = () => {
+    return this.props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name}</option>)
   }
   
+  render() {
     return (
       <div className='PlaylistForm'>
         <div className='playlist-instructions-header'>
@@ -14,19 +18,19 @@ const PlaylistForm = (props) => {
         <div className='playlist-instructions-body'>
           Once you press play, you'll have two minutes to guess the title of as many songs as possible.
         </div>
-        <select className='playlist-select-dropdown' value={props.selectedPlaylist.name} onChange={(e) => props.selectPlaylist(e.target.value)}>
+        <select ref={(selectPlaylist) => { this.selectPlaylist = selectPlaylist; }} className='playlist-select-dropdown' value={this.props.selectedPlaylist.name} onChange={(e) => this.props.selectPlaylist(e.target.value)}>
           <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>
-          {renderPlaylistFormOptions()}
+          {this.renderPlaylistFormOptions()}
         </select>
         <br></br>
-        {props.selectedPlaylist.name 
-          ? <button onClick={props.playGame} className='playlist-play-button'>Play!</button> 
+        {this.props.selectedPlaylist.name 
+          ? <button onClick={this.props.playGame} className='playlist-play-button'>Play!</button> 
           : ''
         }
         
       </div>
     );
-  
+  }
 }
 
 export default PlaylistForm;
