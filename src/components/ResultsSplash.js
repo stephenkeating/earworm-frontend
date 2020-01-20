@@ -56,8 +56,8 @@ class ResultsSplash extends Component  {
             <input className='submit-results-button' type="submit" value={this.state.buttonLabel} />
           </form>
           <br></br>
+          <button className='play-again-button' onClick={this.props.playAgain}>Play Again!</button>
         </div>
-        <button className='play-again-button' onClick={this.props.playAgain}>Play Again!</button>
       </div>
     )
   }

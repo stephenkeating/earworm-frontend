@@ -8,6 +8,7 @@ dark gray: #404040
 
 html {
   background-image: linear-gradient(#404040, #191414);
+  background-attachment: fixed;
   width: 98%;
   height: 100%;
   letter-spacing: 0.1em;
@@ -24,7 +25,7 @@ a:hover {
 }
 select {
   margin: 5px;
-  width: 250px;
+  width: 100%;
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
@@ -34,7 +35,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(./hamburger_icon.png) 96% / 10% no-repeat #A9A9A9;
+  background: url(./hamburger_icon.png) 98.5% / 25px no-repeat #A9A9A9;
 }
 input {
   margin: 5px;
@@ -50,6 +51,8 @@ input {
   color: #FFFFFF;
   font-family: "LINETO CIRCULAR", Sans-Serif;
   flex: auto;
+}.body-contianer {
+  align-items: stretch
 }
 .logo-bar {
   color: #FFFFFF;
@@ -68,10 +71,35 @@ input {
 }
 .game-container {
   padding: 2%;
+  width: 49%;
   margin: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.game-instructions-div {
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px
+}
+.game-timer {
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px
+}
+.guess-form {
+  width: 100%;
+  text-align: center;
+}
+.spotify-player-iframe {
+  width: 100%;
+  margin: 5px;
 }
 .playlist-instructions-header {
   margin: 5px;
@@ -82,7 +110,34 @@ input {
   margin: 5px;
   color: #A9A9A9;
   font-weight: bold;
-  font-size: 18px
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+.results-spash {
+  text-align: center;
+}
+.results-instructions {
+  text-align: center;
+  padding: 1px;
+  border-bottom: 1px solid;
+  border-color: #191414;
+}
+.track-outcome{
+  margin: 1px;
+  padding: 1px;
+  color: #A9A9A9;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0em;
+  /* border-top: 1px solid; */
+  border-bottom: 1px solid;
+  border-color: #191414;
+}
+.save-game-form {
+  text-align: center;
+}
+.play-again-button {
+  text-align: center;
 }
 .footer{
   color: #FFFFFF;
@@ -214,9 +269,17 @@ input {
   opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear;
 }  
+.flash-message {
+  margin: 5px;
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
 
-
-/* .game-timer{
-  margin: auto;
-  width: 60%;
-} */
+.game-timer{
+  margin: 5px;
+  color: #A9A9A9;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
