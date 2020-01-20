@@ -141,9 +141,9 @@ class GameContainer extends Component  {
     console.log(this.state)
     return (
       <div className='game'>
-        <h1>
+        <div className='game-instructions-div'>
           Press play and guess the track's title before the timer runs out!
-        </h1>
+        </div>
         <GameTimer 
           seconds={this.state.seconds}
         />

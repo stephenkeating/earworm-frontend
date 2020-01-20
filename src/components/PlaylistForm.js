@@ -24,7 +24,7 @@ class PlaylistForm extends Component{
         </select>
         <br></br>
         {this.props.selectedPlaylist.name 
-          ? <button onClick={this.props.playGame} className='playlist-play-button'>Play!</button> 
+          ? <button onClick={this.props.playGame} className='playlist-play-button'>PLAY</button> 
           : ''
         }
         

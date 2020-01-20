@@ -44,7 +44,9 @@ class ResultsSplash extends Component  {
   render (){
     return (
       <div className='results-splash'>
-        <h1>Here's how you did:</h1>
+        <div className='results-instructions'>
+          Here's how you did:
+        </div>
         {this.renderTrackResults()}
         <div className='save-game-form'>
           <form onSubmit={(e) => this.handleSubmit(e)}>

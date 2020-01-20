@@ -25,7 +25,21 @@ class MainContainer extends Component  {
         <BodyContainer 
           // playGame={this.playGame}
         />
-        {/* results splash component*/}
+        {/* follow <br> prevents the bottom of the body from sliding below the footer*/}
+        <br></br>
+        <div className='footer'>
+          <div className='footer-text'>
+            EarWorm App&nbsp; 
+          </div>
+          <div className='footer-img-div'>
+            <a href="https://thenounproject.com/search/?q=Ear&i=659545" target="_blank">
+              <img className='footer-img' src={earWorm} alt="earWorm" />
+            </a>
+          </div>
+          <div className='footer-text'>
+            <a href="https://github.com/stephenkeating" target="_blank">&nbsp;by Stephen Keating</a>
+          </div>
+        </div>
       </div>
     )
   }

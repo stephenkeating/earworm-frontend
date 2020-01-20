@@ -1,45 +1,208 @@
 /* Color Scheme:
 green: #1db954
 black text: #191414;
-white text: white;
+white text: #FFFFFF;
 light gray text: #A9A9A9;
+dark gray: #404040
 */
 
 html {
   background-image: linear-gradient(#404040, #191414);
+  width: 98%;
   height: 100%;
+  letter-spacing: 0.1em;
+  flex-direction: column;
+
+}
+a {
+  color: inherit; 
+  text-decoration: inherit; 
+}
+a:hover {
+  color: #1db954;
+  text-decoration: inherit; 
+}
+select {
+  margin: 5px;
+  width: 250px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: 0px solid #191414;
+  height: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(./hamburger_icon.png) 96% / 10% no-repeat #A9A9A9;
+}
+input {
+  margin: 5px;
+  width: 250px;
+  padding: 5px;
+  font-size: 14px;
+  border: 0px solid #191414;
+  background-color: #191414;
+  height: 30px;
+  color: white;
 }
 .main-container {
-  color: white;
+  color: #FFFFFF;
   font-family: "LINETO CIRCULAR", Sans-Serif;
-  
+  flex: auto;
 }
 .logo-bar {
-  color: #1db954;
+  color: #FFFFFF;
   display: flex;
-  height: 70px;
+  height: 55px;
   width: 100%;
-  line-height: 70px;
+  line-height: 55px;
   vertical-align: middle;
   background-color: #191414;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 25px;
   padding: 1%;
 }
 .logo-img {
-  height: 70px;
+  height: 55px;
 }
 .game-container {
   padding: 2%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .playlist-instructions-header {
+  margin: 5px;
   font-weight: bold;
   font-size: 20px
 }
 .playlist-instructions-body {
+  margin: 5px;
   color: #A9A9A9;
   font-weight: bold;
   font-size: 18px
+}
+.footer{
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 100%;
+  line-height: 35px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #191414;
+  font-size: 15px;
+  position:fixed;
+  bottom:0;
+  font-weight: bold;
+  transition: transform .2s;
+}
+.footer-img {
+  text-align: center;
+  vertical-align: middle;
+  height: 25px;
+}
+.footer-img:hover {
+  transform: scale(1.1);
+}
+.playlist-play-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.playlist-play-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+.submit-guess-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.submit-guess-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+.submit-results-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.submit-results-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+.play-again-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.play-again-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+.skip-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.skip-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
 }
 .fadeIn {
   visibility: visible;
