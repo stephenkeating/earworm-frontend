@@ -134,6 +134,9 @@ class GameContainer extends Component  {
     }
   }
 
+    
+  
+
   render (){
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
@@ -142,19 +145,19 @@ class GameContainer extends Component  {
     return (
       <div className='game'>
         <div className='game-instructions-div'>
-          Press play and guess the track's title before the timer runs out!
+          
         </div>
-        <GameTimer 
-          seconds={this.state.seconds}
-        />
         {this.renderSpotifySongplayer()}
+        
         <GuessForm
           trackGuess={this.state.trackGuess}
           handleChange={this.handleChange}
           handleSkip={this.handleSkip}
           handleSubmit={this.handleSubmit}
         />
-        <br></br>
+        <GameTimer 
+          seconds={this.state.seconds}
+        />
         <div className={this.state.flashVisible ? 'fadeIn flash-message' : 'fadeOut flash-message'}>
           {this.state.flashMessage}
         </div>

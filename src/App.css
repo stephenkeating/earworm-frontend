@@ -36,22 +36,46 @@ select {
   -moz-appearance: none;
   appearance: none;
   background: url(./hamburger_icon.png) 98.5% / 25px no-repeat #A9A9A9;
+  outline-color: #191414;
+}
+select option{
+  background-color: #191414;
+}
+.playlist-select-dropdown select:focus {
+  /* outline: none !important;
+  border: 1px solid #191414 !important;
+  border-color: #191414;
+  outline-color: #191414;
+  outline-offset: 0px;
+  box-shadow: none; */
+}
+.playlist-select-option hover{
+  outline: none !important;
+  background-color: #191414;
 }
 input {
   margin: 5px;
-  width: 250px;
-  padding: 5px;
-  font-size: 14px;
-  border: 0px solid #191414;
+  padding: 0px;
+  width: 200px;
+  padding: 1px;
+  font-size: 22px;
+  border: 1px solid #191414;
   background-color: #191414;
-  height: 30px;
+  height: 26px;
   color: white;
+  /* border-radius: 4px; */
+}
+input[type=text]:focus {
+  outline: none !important;
+  border:1px 0px 0px 1px solid #191414;
 }
 .main-container {
   color: #FFFFFF;
   font-family: "LINETO CIRCULAR", Sans-Serif;
   flex: auto;
-}.body-contianer {
+  text-align: center;
+}
+.body-contianer {
   align-items: stretch
 }
 .logo-bar {
@@ -88,18 +112,14 @@ input {
   font-weight: bold;
   font-size: 20px
 }
-.game-timer {
-  width: 100%;
-  font-weight: bold;
-  font-size: 20px
-}
 .guess-form {
+  margin: 5px;
   width: 100%;
   text-align: center;
 }
 .spotify-player-iframe {
   width: 100%;
-  margin: 5px;
+  margin: 0px;
 }
 .playlist-instructions-header {
   margin: 5px;
@@ -109,7 +129,7 @@ input {
 .playlist-instructions-body {
   margin: 5px;
   color: #A9A9A9;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.05em;
 }
@@ -126,10 +146,10 @@ input {
   margin: 1px;
   padding: 1px;
   color: #A9A9A9;
+  text-align: left;
   font-weight: normal;
   font-size: 14px;
   letter-spacing: 0em;
-  /* border-top: 1px solid; */
   border-bottom: 1px solid;
   border-color: #191414;
 }
@@ -184,6 +204,7 @@ input {
   transform: scale(1.06);
 }
 .submit-guess-button {
+  margin: 5px;
   color: #FFFFFF;
   border-radius: 20px;
   font-weight: bold;
@@ -241,6 +262,7 @@ input {
   transform: scale(1.06);
 }
 .skip-button {
+  margin: 5px;
   color: #FFFFFF;
   border-radius: 20px;
   font-weight: bold;
@@ -270,6 +292,7 @@ input {
   transition: visibility 0s 2s, opacity 2s linear;
 }  
 .flash-message {
+  color: #A9A9A9;
   margin: 5px;
   width: 100%;
   font-weight: bold;
@@ -277,9 +300,25 @@ input {
 }
 
 .game-timer{
+  width: 100%;
+  font-weight: normal;
   margin: 5px;
   color: #A9A9A9;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.05em;
+}
+.progress-bar {
+  margin: 5px;
+  /* padding: 1px; */
+  width: 100%;
+  height: 5px;
+  background-color: #191414;
+  border-radius: 2.5px;
+}
+.inside-progress-bar {
+  /* margin: 2px 2px 2px 2px; */
+  width: 100%;
+  height: 5px;
+  background-color: #A9A9A9;
+  border-radius: 2.5px;
 }

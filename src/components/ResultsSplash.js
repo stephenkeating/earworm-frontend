@@ -12,10 +12,10 @@ class ResultsSplash extends Component  {
   }
 
   renderTrackResults = () => {
-    return this.props.trackOutcomes.map(outcome => {
+    return this.props.trackOutcomes.map(function(outcome, i) {
       return <div className='track-outcome' key={outcome.id}>
-        {outcome.outcome} {outcome.track.name} by {outcome.track.artists} 
-        </div>
+      {i + 1}.&nbsp;{outcome.outcome} -- {outcome.track.name} by {outcome.track.artists} 
+        </div>; 
     })
   }
 
@@ -45,7 +45,7 @@ class ResultsSplash extends Component  {
     return (
       <div className='results-splash'>
         <div className='results-instructions'>
-          Here's how you did:
+          Your Results:
         </div>
         {this.renderTrackResults()}
         <div className='save-game-form'>
@@ -55,7 +55,6 @@ class ResultsSplash extends Component  {
             </label>
             <input className='submit-results-button' type="submit" value={this.state.buttonLabel} />
           </form>
-          <br></br>
           <button className='play-again-button' onClick={this.props.playAgain}>Play Again!</button>
         </div>
       </div>
