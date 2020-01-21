@@ -16,7 +16,7 @@ class PlaylistForm extends Component{
           Select A Playlist
         </div>
         <div className='playlist-instructions-body'>
-          Once you press play, you'll have two minutes to guess the title of as many songs as possible.
+          Once you press play, you'll have three minutes to guess the title of as many songs as possible.
         </div>
         <select ref={(selectPlaylist) => { this.selectPlaylist = selectPlaylist; }} className='playlist-select-dropdown' value={this.props.selectedPlaylist.name} onChange={(e) => this.props.selectPlaylist(e.target.value)}>
           <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>

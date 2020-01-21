@@ -10,10 +10,10 @@ class GameContainer extends Component  {
     gameTracks: [],
     currentTrack: 0,
     trackGuess: '',
-    seconds: 120,
+    seconds: 180,
     counterID: '',
     flashMessage: '',
-    flashVisible: false,
+    flashVisible: true,
     flashTimeoutID: ''
   }
 
@@ -144,8 +144,11 @@ class GameContainer extends Component  {
     console.log(this.state)
     return (
       <div className='game'>
-        <div className='game-instructions-div'>
-          
+        <div className='game-title-div'>
+          {this.props.selectedPlaylist.name}
+        </div>
+        <div className={this.state.flashVisible ? 'fadeIn flash-message' : 'fadeOut flash-message'}>
+          ▼ Press play ▼
         </div>
         {this.renderSpotifySongplayer()}
         

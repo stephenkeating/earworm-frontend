@@ -25,7 +25,7 @@ a:hover {
 }
 select {
   margin: 5px;
-  width: 100%;
+  width: 80%;
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
@@ -57,13 +57,13 @@ input {
   margin: 5px;
   padding: 0px;
   width: 200px;
+  vertical-align: middle;
   padding: 1px;
   font-size: 22px;
   border: 1px solid #191414;
   background-color: #191414;
   height: 26px;
   color: white;
-  /* border-radius: 4px; */
 }
 input[type=text]:focus {
   outline: none !important;
@@ -76,7 +76,7 @@ input[type=text]:focus {
   text-align: center;
 }
 .body-contianer {
-  align-items: stretch
+  align-items: center
 }
 .logo-bar {
   color: #FFFFFF;
@@ -95,22 +95,39 @@ input[type=text]:focus {
 }
 .game-container {
   padding: 2%;
-  width: 49%;
+  width: 97%;
   margin: 5px;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 .game {
+  width: 60%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   text-align: center;
+  align-items: center;
 }
-.game-instructions-div {
+.PlaylistForm {
+  width:60%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.game-title-div {
+  margin: 5px;
   width: 100%;
   font-weight: bold;
   font-size: 20px
+}
+.game-instructions-div {
+  margin: 5px;
+  width: 100%;
+  color: #A9A9A9;
+  text-align: center;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.05em;
 }
 .guess-form {
   margin: 5px;
@@ -118,8 +135,9 @@ input[type=text]:focus {
   text-align: center;
 }
 .spotify-player-iframe {
+  margin: 5px;
+  justify-content: center;
   width: 100%;
-  margin: 0px;
 }
 .playlist-instructions-header {
   margin: 5px;
@@ -134,6 +152,7 @@ input[type=text]:focus {
   letter-spacing: 0.05em;
 }
 .results-spash {
+  width: 100%;
   text-align: center;
 }
 .results-instructions {
@@ -267,7 +286,7 @@ input[type=text]:focus {
   border-radius: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background: #1db954;
+  background: #EF2D56;
   font-size: 13px;
   width: 200px;
   height: 30px;

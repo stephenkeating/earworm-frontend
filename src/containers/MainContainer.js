@@ -32,12 +32,12 @@ class MainContainer extends Component  {
             EarWorm App&nbsp; 
           </div>
           <div className='footer-img-div'>
-            <a href="https://thenounproject.com/search/?q=Ear&i=659545" target="_blank">
+            <a href="https://thenounproject.com/search/?q=Ear&i=659545" target="_blank" rel="noopener noreferrer">
               <img className='footer-img' src={earWorm} alt="earWorm" />
             </a>
           </div>
           <div className='footer-text'>
-            <a href="https://github.com/stephenkeating" target="_blank">&nbsp;by Stephen Keating</a>
+            <a href="https://github.com/stephenkeating" target="_blank" rel="noopener noreferrer">&nbsp;by Stephen Keating</a>
           </div>
         </div>
       </div>

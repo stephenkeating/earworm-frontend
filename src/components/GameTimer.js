@@ -3,13 +3,13 @@ import React from 'react';
 const GameTimer = (props) => {
 
   let timerWidth = {
-    'width': `${(120 - props.seconds)*100/120 + 1}%`
+    'width': `${(180 - props.seconds)*100/180 + 1}%`
   };
 
     return(
       <div className='game-timer'>
         <div className='game-timer-text'>
-          Seconds Remaining: { props.seconds < 10 ? `0${ props.seconds }` : props.seconds }
+          Time Remaining: { props.seconds < 10 ? `0${ props.seconds }` : props.seconds }
         </div>
         <div className="progress-bar">
           <div className="inside-progress-bar" style={timerWidth}>
