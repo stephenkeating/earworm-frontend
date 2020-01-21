@@ -90,6 +90,7 @@ class BodyContainer extends Component  {
               trackOutcomes={this.state.trackOutcomes}
               currentGame={this.state.currentGame}
               playAgain={this.playAgain}
+              selectedPlaylist={this.selectedPlaylist}
             />
     }
   }

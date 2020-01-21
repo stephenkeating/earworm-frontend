@@ -190,9 +190,9 @@ input[type=text]:focus {
 }
 .spotify-player {
   vertical-align: middle;
-  /* width: 100%; */
-  transform: scale(2);
-  padding: 8%;
+  /* width: 300px; */
+  transform: scale(1.75);
+  padding: 5%;
 }
 .playlist-instructions-header {
   margin: 10px;
@@ -215,11 +215,16 @@ input[type=text]:focus {
   width: 100%;
   color: #1db954;
   justify-content: center;
+  margin: 1px;
   padding: 1px;
   border-bottom: 1px solid;
   border-color: #191414;
   font-size: 16px;
   letter-spacing: 0.05em;
+}
+.score-span {
+  font-size: 20px;
+  font-weight: bolder;
 }
 .track-outcome{
   width: 100%;
@@ -237,9 +242,6 @@ input[type=text]:focus {
   height: 15px;
   margin-top: 0px;
   vertical-align: top;
-}
-.skipped-div {
-  height: 
 }
 .save-game-form {
   text-align: center;

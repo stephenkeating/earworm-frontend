@@ -51,11 +51,17 @@ class ResultsSplash extends Component  {
       .catch(err => console.log(err))
   }
 
+  calculateGameScore = () => {
+    return this.props.trackOutcomes.filter(trackOutcome => trackOutcome.outcome === 'Earworm!').length
+  }
+  
   render (){
+    console.log(this.props)
+    
     return (
       <div className='results-splash'>
         <div className='results-instructions'>
-          Your Results:
+          your score: <span className='score-span'>{this.calculateGameScore()}</span>
         </div>
         {this.renderTrackResults()}
         <div className='save-game-form'>
