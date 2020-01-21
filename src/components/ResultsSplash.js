@@ -1,31 +1,34 @@
 import React, { Component } from "react";
-import earWorm from '../EarWorm3.png'; 
+import earWormGreen from '../EarWorm3.png'; 
+import earWormRed from '../EarWorm4.png'; 
 
 class ResultsSplash extends Component  {
 
   state = {
     buttonLabel: 'Submit Score',
-    user: ''
+    user: '',
+    allGames: []
   }
 
   componentDidMount(){
     this.nameInput.focus();
+    this.fetchAllGames(this.props.selectedPlaylist.id)
   }
 
   renderTrackResults = () => {
     function translateOutcome(outcome){
       if (outcome === 'Earworm!') {
-        return <img className='results-img' src={earWorm} alt="earWorm" />
+        return <img className='results-img' src={earWormGreen} alt="earWorm" />
       } else if (outcome === 'Skipped') {
-        return '❌'
+        return <img className='results-img' src={earWormRed} alt="earWorm" />
       } else {
-        return '⏰'
+        return <img className='results-img' src={earWormRed} alt="earWorm" />
       }
     }
     return this.props.trackOutcomes.map(function(outcome, i) {
       return <div className='track-outcome' key={outcome.id}>
-      {i + 1}.&nbsp;{ translateOutcome(outcome.outcome)} { outcome.track.name} — {outcome.track.artists} 
-        </div>; 
+                <span className='track-number-span'>{i + 1}.</span>&nbsp;{ translateOutcome(outcome.outcome)} { outcome.track.name} — {outcome.track.artists} 
+              </div>; 
     })
   }
 
@@ -54,9 +57,26 @@ class ResultsSplash extends Component  {
   calculateGameScore = () => {
     return this.props.trackOutcomes.filter(trackOutcome => trackOutcome.outcome === 'Earworm!').length
   }
+
+  // Called in Component Did Mount with this.props.selectedPlaylist.id. Filtering for the current playlist and where a user submitted a name.
+  fetchAllGames = (selectedPlaylistId) => {
+    fetch(`http://localhost:3000/games/`)
+      .then(r => r.json())
+      .then(allGames => this.setState({allGames: allGames.filter(game => game.playlist_id === selectedPlaylistId).filter(game => game.user !== null)}))
+      .catch(err => console.log(err))
+  }
+  
+  //dont directly mutate state. DRY the filter. think about calculating correct answers on the backend. 
+  renderHighScores = () => {
+    return this.state.allGames.sort(function(a, b) {
+      return b.answers.filter(answer => answer.outcome === 'Earworm!').length - a.answers.filter(answer => answer.outcome === 'Earworm!').length
+    })
+  }
   
   render (){
     console.log(this.props)
+    console.log(this.state)
+    console.log(this.renderHighScores())
     
     return (
       <div className='results-splash'>

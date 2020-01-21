@@ -238,10 +238,17 @@ input[type=text]:focus {
   border-bottom: 1px solid;
   border-color: #191414;
 }
+.track-number-span {
+  display: inline-block;
+  width: 15px;
+  padding-right: 7px;
+  padding-left: 5px;
+}
 .results-img {
   height: 15px;
   margin-top: 0px;
   vertical-align: top;
+  padding-right: 3px;
 }
 .save-game-form {
   text-align: center;

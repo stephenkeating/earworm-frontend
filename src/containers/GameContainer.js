@@ -141,7 +141,7 @@ class GameContainer extends Component  {
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
     // console.log(this.props.currentGame)
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className='game'>
         <div className='game-title-div'>

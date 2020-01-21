@@ -90,14 +90,14 @@ class BodyContainer extends Component  {
               trackOutcomes={this.state.trackOutcomes}
               currentGame={this.state.currentGame}
               playAgain={this.playAgain}
-              selectedPlaylist={this.selectedPlaylist}
+              selectedPlaylist={this.state.selectedPlaylist}
             />
     }
   }
   
 
   render (){
-    console.log('game container state:', this.state)
+    // console.log('game container state:', this.state)
     return(
       <div className='main-container'>
         {this.state.gameStatus === 'welcome'
