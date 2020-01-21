@@ -3,7 +3,7 @@ import Welcome from '../components/Welcome.js';
 import PlaylistForm from '../components/PlaylistForm.js';
 import GameContainer from '../containers/GameContainer.js';
 import ResultsSplash from '../components/ResultsSplash';
-import "typeface-work-sans";
+import earWorm from '../EarWorm3.png'; 
 
 class BodyContainer extends Component  {
 
@@ -98,9 +98,41 @@ class BodyContainer extends Component  {
   render (){
     console.log('game container state:', this.state)
     return(
-      <div className="game-container">
-        {this.renderGameStatus()}
+      <div className='main-container'>
+        {this.state.gameStatus === 'welcome'
+          ? null
+          : <div className='logo-bar'>
+              <div className='logo-img-div'>
+                <img className='logo-img' src={earWorm} alt="earWorm" />
+              </div>
+              <div className='logo-text'>
+                &nbsp;earworm
+              </div>
+            </div>
+        }
+        <div className="game-container">
+          {this.renderGameStatus()}
+        </div>
+        {/* follow <br> prevents the bottom of the body from sliding below the footer*/}
+        <br></br>
+        {this.state.gameStatus === 'welcome'
+          ? null
+          : <div className='footer'>
+              {/* <div className='footer-text'>
+                EarWorm App&nbsp; 
+              </div>
+              <div className='footer-img-div'>
+                <a href="https://thenounproject.com/search/?q=Ear&i=659545" target="_blank" rel="noopener noreferrer">
+                  <img className='footer-img' src={earWorm} alt="earWorm" />
+                </a>
+              </div> */}
+              <div className='footer-text'>
+                <a href="https://github.com/stephenkeating" target="_blank" rel="noopener noreferrer">CREATED BY STEPHEN KEATING</a>
+              </div>
+            </div>
+        }
       </div>
+      
     )
   }
 

@@ -20,7 +20,10 @@ class GuessForm extends Component{
           </label>
           <input className='submit-guess-button' type="submit" value="Submit" />
         </form>
-        <button className='skip-button' onClick={this.props.handleSkip}>Skip (5 second penalty)</button>
+        <button className='skip-button' onClick={this.props.handleSkip}>Skip</button>
+        <div className='skip-instructions'>
+          (5 second penalty)
+        </div>
       </div>
       
     );

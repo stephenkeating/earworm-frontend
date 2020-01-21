@@ -3,7 +3,6 @@ import TrackPlayer from '../components/TrackPlayer';
 import GameTimer from '../components/GameTimer';
 import GuessForm from "../components/GuessForm";
 import distance from 'jaro-winkler';
-import "typeface-work-sans";
 
 class GameContainer extends Component  {
 

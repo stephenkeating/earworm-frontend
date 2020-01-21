@@ -8,12 +8,12 @@ const GameTimer = (props) => {
 
     return(
       <div className='game-timer'>
-        <div className='game-timer-text'>
-          Time Remaining: { props.seconds < 10 ? `0${ props.seconds }` : props.seconds }
-        </div>
         <div className="progress-bar">
           <div className="inside-progress-bar" style={timerWidth}>
           </div>
+        </div>
+        <div className='game-timer-text'>
+          Time Remaining: { props.seconds < 10 ? `0${ props.seconds }` : props.seconds }
         </div>
       </div>
     )
