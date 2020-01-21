@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Welcome from '../components/Welcome.js';
 import PlaylistForm from '../components/PlaylistForm.js';
 import GameContainer from '../containers/GameContainer.js';
 import ResultsSplash from '../components/ResultsSplash';
-
+import "typeface-work-sans";
 
 class BodyContainer extends Component  {
 
@@ -10,7 +11,7 @@ class BodyContainer extends Component  {
     playlists: [],
     selectedPlaylist: {},
     // gameStatus is 'pre' when selecting playlist, 'active' when playing, 'post' when showing results
-    gameStatus: 'pre',
+    gameStatus: 'welcome',
     currentGame: {},
     trackOutcomes: []
   }
@@ -65,7 +66,12 @@ class BodyContainer extends Component  {
   
   // renders component based on this.state.gameStatus
   renderGameStatus = () => {
-    if (this.state.gameStatus === 'pre') {
+    if (this.state.gameStatus === 'welcome') {
+      return <Welcome 
+              playAgain={this.playAgain}  
+            />
+    }
+    else if (this.state.gameStatus === 'pre') {
       return <PlaylistForm 
             playlists={this.state.playlists}
             selectedPlaylist={this.state.selectedPlaylist}

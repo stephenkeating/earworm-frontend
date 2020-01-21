@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import earWorm from '../EarWorm3.png'; 
 
 class ResultsSplash extends Component  {
 
@@ -12,9 +13,18 @@ class ResultsSplash extends Component  {
   }
 
   renderTrackResults = () => {
+    function translateOutcome(outcome){
+      if (outcome === 'Earworm!') {
+        return <img className='results-img' src={earWorm} alt="earWorm" />
+      } else if (outcome === 'Skipped') {
+        return '❌'
+      } else {
+        return '⏰'
+      }
+    }
     return this.props.trackOutcomes.map(function(outcome, i) {
       return <div className='track-outcome' key={outcome.id}>
-      {i + 1}.&nbsp;{outcome.outcome} -- {outcome.track.name} by {outcome.track.artists} 
+      {i + 1}.&nbsp;{ translateOutcome(outcome.outcome)} { outcome.track.name} — {outcome.track.artists} 
         </div>; 
     })
   }

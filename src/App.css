@@ -1,3 +1,5 @@
+
+/* @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap'); */
 /* Color Scheme:
 green: #1db954;
 black text: #191414;
@@ -10,11 +12,15 @@ red: #EF2D56;
 html {
   background-image: linear-gradient(#404040, #191414);
   background-attachment: fixed;
+  color: #FFFFFF;
   width: 98%;
   height: 100%;
   letter-spacing: 0.1em;
   flex-direction: column;
 
+}
+body {
+  font-family: 'Work Sans', sans-serif;
 }
 a {
   color: inherit; 
@@ -45,6 +51,46 @@ select option{
 /* .playlist-select-dropdown select:focus {
   
 } */
+.welcome-page {
+  width: 60%;
+  vertical-align: middle;
+}
+.welcome-img {
+  height: 155px;
+}
+.welcome-header {
+  width: 100%;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 20px
+}
+.welcome-body {
+  width: 100%;
+  margin: 5px;
+  color: #A9A9A9;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+.welcome-play-button {
+  color: #FFFFFF;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: #1db954;
+  font-size: 13px;
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  margin: 5px;
+  border: none;
+  opacity: .7;
+  transition: 0.3s;
+}
+.welcome-play-button:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
 .playlist-select-option hover{
   outline: none !important;
   background-color: #191414;
@@ -66,12 +112,12 @@ input[type=text]:focus {
   border:1px 0px 0px 1px solid #191414;
 }
 .main-container {
-  color: #FFFFFF;
-  font-family: "LINETO CIRCULAR", Sans-Serif;
+
   flex: auto;
   text-align: center;
 }
 .body-contianer {
+  font-family: 'Work Sans', sans-serif;
   align-items: center
 }
 .logo-bar {
@@ -81,7 +127,7 @@ input[type=text]:focus {
   width: 100%;
   line-height: 55px;
   vertical-align: middle;
-  background-color: #191414;
+  /* background-color: #191414; */
   font-weight: bold;
   font-size: 25px;
   padding: 1%;
@@ -148,16 +194,18 @@ input[type=text]:focus {
   letter-spacing: 0.05em;
 }
 .results-spash {
-  width: 100%;
-  text-align: center;
+  width: 60%;
+  justify-content: center;
 }
 .results-instructions {
-  text-align: center;
+  width: 100%;
+  justify-content: center;
   padding: 1px;
   border-bottom: 1px solid;
   border-color: #191414;
 }
 .track-outcome{
+  width: 100%;
   margin: 1px;
   padding: 1px;
   color: #A9A9A9;
@@ -167,6 +215,11 @@ input[type=text]:focus {
   letter-spacing: 0em;
   border-bottom: 1px solid;
   border-color: #191414;
+}
+.results-img {
+  height: 15px;
+  margin-top: 0px;
+  vertical-align: top;
 }
 .save-game-form {
   text-align: center;

@@ -13,10 +13,10 @@ class PlaylistForm extends Component{
     return (
       <div className='PlaylistForm'>
         <div className='playlist-instructions-header'>
-          Select A Playlist
+          what's your jam?
         </div>
         <div className='playlist-instructions-body'>
-          Once you press play, you'll have three minutes to guess the title of as many songs as possible.
+          Once you press play, you'll have 3 mins to guess as many titles as possible. Skip if you need to, but it will cost you.
         </div>
         <select ref={(selectPlaylist) => { this.selectPlaylist = selectPlaylist; }} className='playlist-select-dropdown' value={this.props.selectedPlaylist.name} onChange={(e) => this.props.selectPlaylist(e.target.value)}>
           <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>

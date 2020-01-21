@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BodyContainer from '../containers/BodyContainer.js';
 import earWorm from '../EarWorm3.png'; 
+import "typeface-work-sans";
+require('typeface-work-sans')
 
 class MainContainer extends Component  {
 
