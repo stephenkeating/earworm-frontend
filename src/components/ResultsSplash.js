@@ -67,6 +67,7 @@ class ResultsSplash extends Component  {
   }
   
   //dont directly mutate state. DRY the filter. think about calculating correct answers on the backend. 
+  // right now this is sorting the answers in each game...
   renderHighScores = () => {
     return this.state.allGames.sort(function(a, b) {
       return b.answers.filter(answer => answer.outcome === 'Earworm!').length - a.answers.filter(answer => answer.outcome === 'Earworm!').length

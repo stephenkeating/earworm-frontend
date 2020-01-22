@@ -41,7 +41,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(./hamburger_icon.png) 98.5% / 25px no-repeat #A9A9A9;
+  background: url(./down_arrow.png) 98.5% / 15px no-repeat #A9A9A9;
   outline-color: #191414;
 }
 select option{
@@ -217,8 +217,8 @@ input[type=text]:focus {
   justify-content: center;
   margin: 1px;
   padding: 1px;
-  border-bottom: 1px solid;
-  border-color: #191414;
+  /* border-bottom: 1px solid;
+  border-color: #191414; */
   font-size: 16px;
   letter-spacing: 0.05em;
 }
@@ -235,13 +235,13 @@ input[type=text]:focus {
   font-weight: normal;
   font-size: 14px;
   letter-spacing: 0em;
-  border-bottom: 1px solid;
-  border-color: #191414;
+  /* border-bottom: 1px solid;
+  border-color: #191414; */
 }
 .track-number-span {
   display: inline-block;
   width: 15px;
-  padding-right: 7px;
+  padding-right: 0px;
   padding-left: 5px;
 }
 .results-img {
@@ -329,7 +329,7 @@ input[type=text]:focus {
   font-weight: bold;
   /* font-family: 'Work Sans', sans-serif; */
   letter-spacing: 0.1em;
-  background: #404040;
+  background: #A9A9A9;
   font-size: 13px;
   width: 200px;
   height: 30px;
