@@ -102,7 +102,7 @@ class ResultsSplash extends Component  {
         </div>
         <div className='high-scores-table'>
           <div className='high-scores-header'>
-            top scores for {this.props.selectedPlaylist.name}:
+            top scores for {this.props.selectedPlaylist.name.toLowerCase()}:
           </div>
           {this.renderHighScores()}
         </div>

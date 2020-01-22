@@ -21,7 +21,7 @@ class GuessForm extends Component{
         </form>
         <button className='skip-button' onClick={this.props.handleSkip}>SKIP</button>
         <div className='skip-instructions'>
-          (5 second penalty)
+          (5 sec penalty)
         </div>
       </div>
       

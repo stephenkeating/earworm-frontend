@@ -29,13 +29,12 @@ a:hover {
   text-decoration: inherit; 
 }
 select {
-  margin: 5px;
   width: 80%;
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
-  letter-spacing: 0.1em;
-  color: white;
+  /* letter-spacing: 0.05em; */
+  color: #191414;
   border: 0px solid #191414;
   font-family: 'Work Sans', sans-serif;
   height: 30px;
@@ -310,6 +309,7 @@ input[type=text]:focus {
   bottom:0;
   font-weight: bold;
   transition: transform .2s;
+  opacity: 70%;
 }
 .footer-img {
   text-align: center;

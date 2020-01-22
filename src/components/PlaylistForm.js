@@ -6,7 +6,7 @@ class PlaylistForm extends Component{
   }
 
   renderPlaylistFormOptions = () => {
-    return this.props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name}</option>)
+    return this.props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name.toUpperCase()}</option>)
   }
   
   render() {

@@ -149,10 +149,10 @@ class GameContainer extends Component  {
     return (
       <div className='game'>
         <div className='game-title-div'>
-          {this.props.selectedPlaylist.name}
+          {this.props.selectedPlaylist.name.toLowerCase()}
         </div>
         <div className={this.state.flashVisible ? 'fadeIn flash-message' : 'fadeOut flash-message'}>
-          ▼ Press play ▼
+          ▼ PRESS PLAY ▼
         </div>
         {this.renderSpotifySongplayer()}
         
