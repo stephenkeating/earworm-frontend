@@ -16,7 +16,7 @@ class PlaylistForm extends Component{
           what's your jam?
         </div>
         <select ref={(selectPlaylist) => { this.selectPlaylist = selectPlaylist; }} className='playlist-select-dropdown' value={this.props.selectedPlaylist.name} onChange={(e) => this.props.selectPlaylist(e.target.value)}>
-          <option className='playlist-select-option' defaultValue value='select'>--Select A Playlist--</option>
+          <option className='playlist-select-option' defaultValue value='select'>SELECT A PLAYLIST</option>
           {this.renderPlaylistFormOptions()}
         </select>
         <br></br>

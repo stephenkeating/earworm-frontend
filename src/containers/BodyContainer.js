@@ -107,7 +107,7 @@ class BodyContainer extends Component  {
                 <img className='logo-img' src={earWorm} alt="earWorm" />
               </div>
               <div className='logo-text'>
-                &nbsp;earworm
+                earworm
               </div>
             </div>
         }

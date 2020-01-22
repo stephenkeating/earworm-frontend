@@ -11,7 +11,7 @@ html {
   color: #FFFFFF;
   width: 98%;
   height: 100%;
-  letter-spacing: 0.1em;
+  /* letter-spacing: 0.03em; */
   flex-direction: column;
 
 }
@@ -34,6 +34,7 @@ select {
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
+  letter-spacing: 0.1em;
   color: white;
   border: 0px solid #191414;
   font-family: 'Work Sans', sans-serif;
@@ -69,7 +70,7 @@ select option{
   color: #A9A9A9;
   font-weight: normal;
   font-size: 16px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .welcome-play-button {
   color: #FFFFFF;
@@ -138,6 +139,7 @@ input[type=text]:focus {
 }
 .logo-text {
   font-weight: normal;
+  padding-left: 5px;
 }
 .game-container {
   padding: 2%;
@@ -174,7 +176,7 @@ input[type=text]:focus {
   text-align: center;
   font-weight: normal;
   font-size: 16px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .guess-form {
   margin: 5px;
@@ -205,7 +207,7 @@ input[type=text]:focus {
   color: #A9A9A9;
   font-weight: normal;
   font-size: 16px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .results-spash {
   width: 60%;
@@ -220,7 +222,7 @@ input[type=text]:focus {
   /* border-bottom: 1px solid;
   border-color: #191414; */
   font-size: 16px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .score-span {
   font-size: 20px;
@@ -256,6 +258,32 @@ input[type=text]:focus {
 .play-again-button {
   font-family: 'Work Sans', sans-serif;
   text-align: center;
+}
+.high-scores-table {
+  width: 100%;
+  margin: 1px;
+  padding: 1px;
+  color: #A9A9A9;
+  text-align: left;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0em;
+}
+.high-scores-header {
+  width: 100%;
+  color: #1db954;
+  justify-content: center;
+  text-align: center;
+  margin: 1px;
+  margin-top: 15px;
+  padding: 1px;
+  font-size: 16px;
+}
+.high-scores-span {
+  display: inline-block;
+  width: 15px;
+  padding-right: 0px;
+  padding-left: 5px;
 }
 .footer{
   color: #A9A9A9;
@@ -388,7 +416,7 @@ input[type=text]:focus {
   font-size: 14px;
   color: #EF2D56;
   opacity: .7;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .fadeIn {
   visibility: visible;
@@ -405,7 +433,7 @@ input[type=text]:focus {
   margin: 5px;
   width: 100%;
   font-weight: normal;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .progress-bar{
   margin: 5px;
@@ -415,7 +443,7 @@ input[type=text]:focus {
   font-weight: normal;
   color: #A9A9A9;
   font-size: 14px;
-  letter-spacing: 0.05em;
+  /* letter-spacing: 0.05em; */
 }
 .game-timer-text {
   margin: 5px;

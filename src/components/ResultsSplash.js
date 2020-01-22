@@ -5,15 +5,20 @@ import earWormRed from '../EarWorm4.png';
 class ResultsSplash extends Component  {
 
   state = {
-    buttonLabel: 'Submit Score',
+    buttonLabel: 'SUBMIT SCORE',
     user: '',
-    allGames: []
+    topTenHighScores: []
   }
 
   componentDidMount(){
     this.nameInput.focus();
-    this.fetchAllGames(this.props.selectedPlaylist.id)
+    // this.setState({topTenHighScores: this.props.selectedPlaylist.high_scores.slice(0,10)})
+    this.fetchHighScores(this.props.selectedPlaylist.id)
   }
+  
+  // componentDidUpdate(){
+  //   this.fetchHighScores(this.props.selectedPlaylist.id)
+  // }
 
   renderTrackResults = () => {
     function translateOutcome(outcome){
@@ -32,13 +37,21 @@ class ResultsSplash extends Component  {
     })
   }
 
+  renderHighScores = () => {
+    return this.state.topTenHighScores.map(function(highScore, i) {
+      return <div className='high-scores-div' key={i}>
+                <span className='high-scores-span'>{i + 1}.</span>&nbsp;{ highScore.user} — {highScore.score} 
+              </div>; 
+    })
+  }
+  
   handleChange = (value) => {
     this.setState({user: value})
   }
   
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({buttonLabel: 'Edit Name'})
+    this.setState({buttonLabel: 'EDIT NAME'})
     fetch(`http://localhost:3000/games/${this.props.currentGame.id}`, {
       method:'PUT',
       headers: { 
@@ -58,26 +71,27 @@ class ResultsSplash extends Component  {
     return this.props.trackOutcomes.filter(trackOutcome => trackOutcome.outcome === 'Earworm!').length
   }
 
-  // Called in Component Did Mount with this.props.selectedPlaylist.id. Filtering for the current playlist and where a user submitted a name.
-  fetchAllGames = (selectedPlaylistId) => {
-    fetch(`http://localhost:3000/games/`)
+  // Called in Component Did Mount with this.props.selectedPlaylist.id
+  // this.setState({topTenHighScores: this.props.selectedPlaylist.high_scores.slice(0,10)})
+  fetchHighScores = (selectedPlaylistId) => {
+    fetch(`http://localhost:3000/playlists/${selectedPlaylistId}`)
       .then(r => r.json())
-      .then(allGames => this.setState({allGames: allGames.filter(game => game.playlist_id === selectedPlaylistId).filter(game => game.user !== null)}))
+      .then(playlistObject => this.setState({topTenHighScores: playlistObject.high_scores.slice(0,10)}))
       .catch(err => console.log(err))
   }
   
-  //dont directly mutate state. DRY the filter. think about calculating correct answers on the backend. 
-  // right now this is sorting the answers in each game...
-  renderHighScores = () => {
-    return this.state.allGames.sort(function(a, b) {
-      return b.answers.filter(answer => answer.outcome === 'Earworm!').length - a.answers.filter(answer => answer.outcome === 'Earworm!').length
-    })
-  }
+  // //dont directly mutate state. DRY the filter. think about calculating correct answers on the backend. 
+  // // right now this is sorting the answers in each game...
+  // renderHighScores = () => {
+  //   return this.state.allGames.sort(function(a, b) {
+  //     return b.answers.filter(answer => answer.outcome === 'Earworm!').length - a.answers.filter(answer => answer.outcome === 'Earworm!').length
+  //   })
+  // }
   
   render (){
-    console.log(this.props)
+    // console.log(this.props)
     console.log(this.state)
-    console.log(this.renderHighScores())
+    // console.log(this.renderHighScores())
     
     return (
       <div className='results-splash'>
@@ -88,11 +102,17 @@ class ResultsSplash extends Component  {
         <div className='save-game-form'>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <label>
-              <input ref={(input) => { this.nameInput = input; }} type="text" placeholder='Enter Your Name' value={this.state.user} onChange={(e) => this.handleChange(e.target.value)} />
+              <input ref={(input) => { this.nameInput = input; }} type="text" placeholder='Enter Your Name' value={this.state.user} maxLength="10" onChange={(e) => this.handleChange(e.target.value)} />
             </label>
             <input className='submit-results-button' type="submit" value={this.state.buttonLabel} />
           </form>
-          <button className='play-again-button' onClick={this.props.playAgain}>Play Again!</button>
+          <button className='play-again-button' onClick={this.props.playAgain}>PLAY AGAIN</button>
+        </div>
+        <div className='high-scores-table'>
+          <div className='high-scores-header'>
+            top scores for {this.props.selectedPlaylist.name}:
+          </div>
+          {this.renderHighScores()}
         </div>
       </div>
     )

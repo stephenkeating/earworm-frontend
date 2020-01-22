@@ -18,9 +18,9 @@ class GuessForm extends Component{
           <label>
             <input ref={(input) => { this.nameInput = input; }} type="text" placeholder='Guess the Title' value={this.props.trackGuess} onChange={(e) => this.props.handleChange(e.target.value) } />
           </label>
-          <input className='submit-guess-button' type="submit" value="Submit" />
+          <input className='submit-guess-button' type="submit" value="SUBMIT" />
         </form>
-        <button className='skip-button' onClick={this.props.handleSkip}>Skip</button>
+        <button className='skip-button' onClick={this.props.handleSkip}>SKIP</button>
         <div className='skip-instructions'>
           (5 second penalty)
         </div>
