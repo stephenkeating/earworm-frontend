@@ -9,7 +9,6 @@ class GuessForm extends Component{
     this.nameInput.focus();
   }
   render() {
-  // Need to implement a focus on the input text area
 
     return (
      

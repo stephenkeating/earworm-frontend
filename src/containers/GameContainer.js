@@ -85,7 +85,7 @@ class GameContainer extends Component  {
     // this.setState({flashMessage: ("Skipped! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
     // alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
     this.setState({visible: true, currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
-    this.showFlashMessage("Skipped: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
+    this.showFlashMessage("SKIPPED: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
   }
 
   renderSpotifySongplayer = () => {
@@ -105,32 +105,36 @@ class GameContainer extends Component  {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
-    let currentTrackSplitAtComma = this.state.gameTracks[this.state.currentTrack].name.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
-    let currentTrackBeforeDash = this.state.gameTracks[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
-    let currentTrackBeforeParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
-    // not working: let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1] ? this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.gameTracks[this.state.currentTrack].name
-    let currentTrackBeforePtPeriod = this.state.gameTracks[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
-    // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
-    // let currentTrackAfterParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
-    let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
-    let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
-    // console.log(jarowBeforePunctuationScore)
-    let jarowWholeStringScore = distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })
-    // console.log(jarowWholeStringScore)
-    // console.log('user\'s guess:', guess)
-    if (guess === currentTrackSplitAtComma
-      || guess === currentTrackBeforeDash 
-      || guess === currentTrackBeforeParenthesis 
-      || guess === currentTrackBeforePtPeriod 
-      || jarowBeforePunctuationScore > .9
-      || jarowWholeStringScore > .85) {
-      this.trackOutcome('Earworm!')
-      this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: ''})
-      this.showFlashMessage("Earworm! " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
+    if (this.state.trackGuess.length < 1) {
+      this.showFlashMessage("ENTER A GUESS OR SKIP")
     } else {
-      this.setState({ seconds: this.state.seconds - 2})
-      this.showFlashMessage("Guess Again...2 seconds deducted")
+      // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
+      let currentTrackSplitAtComma = this.state.gameTracks[this.state.currentTrack].name.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
+      let currentTrackBeforeDash = this.state.gameTracks[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
+      let currentTrackBeforeParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
+      // not working: let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1] ? this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase() : this.state.gameTracks[this.state.currentTrack].name
+      let currentTrackBeforePtPeriod = this.state.gameTracks[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
+      // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
+      // let currentTrackAfterParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
+      let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
+      let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
+      // console.log(jarowBeforePunctuationScore)
+      let jarowWholeStringScore = distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })
+      // console.log(jarowWholeStringScore)
+      // console.log('user\'s guess:', guess)
+      if (guess === currentTrackSplitAtComma
+        || guess === currentTrackBeforeDash 
+        || guess === currentTrackBeforeParenthesis 
+        || guess === currentTrackBeforePtPeriod 
+        || jarowBeforePunctuationScore > .9
+        || jarowWholeStringScore > .85) {
+        this.trackOutcome('Earworm!')
+        this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: ''})
+        this.showFlashMessage("EARWORM! " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
+      } else {
+        this.setState({ seconds: this.state.seconds - 2})
+        this.showFlashMessage("GUESS AGAIN...2 SECS DEDUCTED")
+      }
     }
   }
 

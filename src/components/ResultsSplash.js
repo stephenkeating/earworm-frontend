@@ -12,13 +12,8 @@ class ResultsSplash extends Component  {
 
   componentDidMount(){
     // this.nameInput.focus();
-    // this.setState({topTenHighScores: this.props.selectedPlaylist.high_scores.slice(0,10)})
     this.fetchHighScores(this.props.selectedPlaylist.id)
   }
-  
-  // componentDidUpdate(){
-  //   this.fetchHighScores(this.props.selectedPlaylist.id)
-  // }
 
   renderTrackResults = () => {
     function translateOutcome(outcome){
@@ -40,7 +35,9 @@ class ResultsSplash extends Component  {
   renderHighScores = () => {
     return this.state.topTenHighScores.map(function(highScore, i) {
       return <div className='high-scores-div' key={i}>
-                <span className='high-scores-span'>{i + 1}.</span>&nbsp;{ highScore.user} — {highScore.score} 
+                <span className={i === 0 ? 'top-score-span' : null}>
+                  <span className='high-scores-span'>{i + 1}.</span>&nbsp;{ highScore.user} — {highScore.score} 
+                </span>
               </div>; 
     })
   }
@@ -51,30 +48,33 @@ class ResultsSplash extends Component  {
   
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({showForm: false})
-    fetch(`http://localhost:3000/games/${this.props.currentGame.id}`, {
-      method:'PUT',
-      headers: { 
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        user: this.state.user
+    if (this.state.user.length < 1) {
+      console.log('add a user name!')
+    } else {
+      this.setState({showForm: false})
+      fetch(`http://localhost:3000/games/${this.props.currentGame.id}`, {
+        method:'PUT',
+        headers: { 
+          'content-type': 'application/json',
+          'accept': 'application/json'
+        },
+        body: JSON.stringify({
+          user: this.state.user
+        })
       })
-    })
-      .then(r => r.json())
-      .then(gameObject => this.setState({
-        topTenHighScores: [...this.state.topTenHighScores, {user: gameObject.user, score: gameObject.score}].sort(function (a, b) {return b.score - a.score}).slice(0,10)
-      }))
-      .catch(err => console.log(err))
+        .then(r => r.json())
+        .then(gameObject => this.setState({
+          topTenHighScores: [...this.state.topTenHighScores, {user: gameObject.user, score: gameObject.score}].sort(function (a, b) {return b.score - a.score}).slice(0,10)
+        }))
+        .catch(err => console.log(err))
+    }
   }
 
   calculateGameScore = () => {
     return this.props.trackOutcomes.filter(trackOutcome => trackOutcome.outcome === 'Earworm!').length
   }
 
-  // Called in Component Did Mount with this.props.selectedPlaylist.id
-  // this.setState({topTenHighScores: this.props.selectedPlaylist.high_scores.slice(0,10)})
+  // Called in componentDidMount with this.props.selectedPlaylist.id
   fetchHighScores = (selectedPlaylistId) => {
     fetch(`http://localhost:3000/playlists/${selectedPlaylistId}`)
       .then(r => r.json())
@@ -82,25 +82,16 @@ class ResultsSplash extends Component  {
       .catch(err => console.log(err))
   }
   
-  // //dont directly mutate state. DRY the filter. think about calculating correct answers on the backend. 
-  // // right now this is sorting the answers in each game...
-  // renderHighScores = () => {
-  //   return this.state.allGames.sort(function(a, b) {
-  //     return b.answers.filter(answer => answer.outcome === 'Earworm!').length - a.answers.filter(answer => answer.outcome === 'Earworm!').length
-  //   })
-  // }
-  
   render (){
-    // console.log(this.props)
-    console.log(this.state)
-    // console.log(this.renderHighScores())
     
     return (
       <div className='results-splash'>
         <div className='results-instructions'>
           your score: <span className='score-span'>{this.calculateGameScore()}</span>
         </div>
-        {this.renderTrackResults()}
+        <div className='track-outcome-table'>
+          {this.renderTrackResults()}
+        </div>
         <div className='save-game-form'>
           <form className={this.state.showForm ? 'null' : 'hide-high-score-form'} onSubmit={(e) => this.handleSubmit(e)}>
             <label>
@@ -108,9 +99,6 @@ class ResultsSplash extends Component  {
             </label>
             <input className='submit-results-button' type="submit" value='SUBMIT SCORE'/>
           </form>
-          <div className='play-again-button-div'>
-            <button className='play-again-button' onClick={this.props.playAgain}>PLAY AGAIN</button>
-          </div>
         </div>
         <div className='high-scores-table'>
           <div className='high-scores-header'>
