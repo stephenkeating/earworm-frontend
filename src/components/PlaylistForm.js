@@ -23,11 +23,12 @@ class PlaylistForm extends Component{
         <div className='playlist-instructions-body'>
           Once you press play, you'll have 3 mins to guess as many titles as possible. Skip if you need to, but it will cost you.
         </div>
-        {this.props.selectedPlaylist.name 
-          ? <button onClick={this.props.playGame} className='playlist-play-button'>PLAY</button> 
-          : ''
-        }
-        
+        <div className='play-again-button-div'>
+          {this.props.selectedPlaylist.name 
+            ? <button onClick={this.props.playGame} className='playlist-play-button'>PLAY</button> 
+            : ''
+          }
+        </div>
       </div>
     );
   }

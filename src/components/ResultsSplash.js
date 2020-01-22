@@ -5,13 +5,13 @@ import earWormRed from '../EarWorm4.png';
 class ResultsSplash extends Component  {
 
   state = {
-    buttonLabel: 'SUBMIT SCORE',
+    showForm: true,
     user: '',
     topTenHighScores: []
   }
 
   componentDidMount(){
-    this.nameInput.focus();
+    // this.nameInput.focus();
     // this.setState({topTenHighScores: this.props.selectedPlaylist.high_scores.slice(0,10)})
     this.fetchHighScores(this.props.selectedPlaylist.id)
   }
@@ -51,7 +51,7 @@ class ResultsSplash extends Component  {
   
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({buttonLabel: 'EDIT NAME'})
+    this.setState({showForm: false})
     fetch(`http://localhost:3000/games/${this.props.currentGame.id}`, {
       method:'PUT',
       headers: { 
@@ -63,7 +63,9 @@ class ResultsSplash extends Component  {
       })
     })
       .then(r => r.json())
-      .then(gameObject => console.log(gameObject))
+      .then(gameObject => this.setState({
+        topTenHighScores: [...this.state.topTenHighScores, {user: gameObject.user, score: gameObject.score}].sort(function (a, b) {return b.score - a.score}).slice(0,10)
+      }))
       .catch(err => console.log(err))
   }
 
@@ -100,19 +102,24 @@ class ResultsSplash extends Component  {
         </div>
         {this.renderTrackResults()}
         <div className='save-game-form'>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
+          <form className={this.state.showForm ? 'null' : 'hide-high-score-form'} onSubmit={(e) => this.handleSubmit(e)}>
             <label>
               <input ref={(input) => { this.nameInput = input; }} type="text" placeholder='Enter Your Name' value={this.state.user} maxLength="10" onChange={(e) => this.handleChange(e.target.value)} />
             </label>
-            <input className='submit-results-button' type="submit" value={this.state.buttonLabel} />
+            <input className='submit-results-button' type="submit" value='SUBMIT SCORE'/>
           </form>
-          <button className='play-again-button' onClick={this.props.playAgain}>PLAY AGAIN</button>
+          <div className='play-again-button-div'>
+            <button className='play-again-button' onClick={this.props.playAgain}>PLAY AGAIN</button>
+          </div>
         </div>
         <div className='high-scores-table'>
           <div className='high-scores-header'>
             top scores for {this.props.selectedPlaylist.name}:
           </div>
           {this.renderHighScores()}
+        </div>
+        <div className='play-again-button-div'>
+          <button className='play-again-button' onClick={this.props.playAgain}>PLAY AGAIN</button>
         </div>
       </div>
     )

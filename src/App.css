@@ -48,9 +48,9 @@ select {
 select option{
   background-color: #191414;
 }
-/* .playlist-select-dropdown select:focus {
-  
-} */
+.playlist-select-dropdown {
+  margin: 15px;
+}
 .welcome-page {
   width: 60%;
   vertical-align: middle;
@@ -163,7 +163,7 @@ input[type=text]:focus {
   justify-content: flex-start;
 }
 .game-title-div {
-  margin: 5px;
+  margin: 15px;
   width: 100%;
   font-weight: normal;
   color: #1db954;
@@ -179,12 +179,12 @@ input[type=text]:focus {
   /* letter-spacing: 0.05em; */
 }
 .guess-form {
-  margin: 5px;
+  margin: 15px;
   width: 100%;
   text-align: center;
 }
 .spotify-player-iframe-div {
-  margin: 5px;
+  margin: 15px;
   align-items: flex-end;
   width: 100%;
   /* height: 200px; */
@@ -210,19 +210,16 @@ input[type=text]:focus {
   /* letter-spacing: 0.05em; */
 }
 .results-spash {
-  width: 60%;
+  width: 100%;
   justify-content: center;
 }
 .results-instructions {
   width: 100%;
   color: #1db954;
   justify-content: center;
-  margin: 1px;
-  padding: 1px;
-  /* border-bottom: 1px solid;
-  border-color: #191414; */
+  margin-bottom: 15px;
+  padding: 0px;
   font-size: 16px;
-  /* letter-spacing: 0.05em; */
 }
 .score-span {
   font-size: 20px;
@@ -230,15 +227,13 @@ input[type=text]:focus {
 }
 .track-outcome{
   width: 100%;
-  margin: 1px;
-  padding: 1px;
+  margin: 5px;
+  padding: 0px;
   color: #A9A9A9;
   text-align: left;
   font-weight: normal;
   font-size: 14px;
   letter-spacing: 0em;
-  /* border-bottom: 1px solid;
-  border-color: #191414; */
 }
 .track-number-span {
   display: inline-block;
@@ -253,7 +248,11 @@ input[type=text]:focus {
   padding-right: 3px;
 }
 .save-game-form {
+  margin: 1px;
   text-align: center;
+}
+.play-again-button-div{
+  margin: 15px;
 }
 .play-again-button {
   font-family: 'Work Sans', sans-serif;
@@ -274,9 +273,9 @@ input[type=text]:focus {
   color: #1db954;
   justify-content: center;
   text-align: center;
-  margin: 1px;
-  margin-top: 15px;
-  padding: 1px;
+  /* margin: 15px; */
+  margin-bottom: 15px;
+  /* padding: 1px; */
   font-size: 16px;
 }
 .high-scores-span {
@@ -371,6 +370,9 @@ input[type=text]:focus {
   opacity: 1;
   transform: scale(1.06);
 }
+.hide-high-score-form {
+  display: none;
+}
 .play-again-button {
   color: #FFFFFF;
   border-radius: 20px;
@@ -439,6 +441,7 @@ input[type=text]:focus {
   margin: 5px;
 }
 .game-timer{
+  margin: 15px;
   width: 100%;
   font-weight: normal;
   color: #A9A9A9;
