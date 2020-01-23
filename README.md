@@ -1,12 +1,34 @@
-for string matching: 
-
-  use anagram regex example to get rid of spaces, capitals, and punctuation
+# EARWORM README
 
 
+Tech Used:
+* React.js
+* Spotify APIs
+* PostgreSQL
+* Ruby on Rails API
+* Custom HTML/CSS
+* Jaro-Winkler algorithm
 
-  <iframe src="https://open.spotify.com/embed/track/2dxjKgT0li4qBI3QwuN9Ih" width="250" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+Difficult:
+* String matching for guesses
+* Spotify APIs
+
+Additional Features to Add:
+* Autoplay (Spotify SDK)
+* Allow User to Import Playlists
+* Multiplayer
+* More string matching
+* Data mining, such as statistics per play/track. (I have the data, just need to display it)
 
 
 
-  string simplification from Anagrams algo: 
-  let A = stringA.replace(/[^\w]/g, '').toLowerCase()
+Logo Credit:
+Ear by Robert A. Di Ieso, US 
+https://thenounproject.com/search/?q=Ear&i=659545
+
+Design Advice:
+Andrew Peet 
+http://www.pdoubleet.com/
+
+Thanks to Flatiron School DUMBO Instructors and Coaches:
+Graham Troyer-Joy, Nicky Dover, Annie Souza, Eric Kim, Ian Hollander

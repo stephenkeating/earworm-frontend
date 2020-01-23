@@ -10,7 +10,7 @@ class BodyContainer extends Component  {
   state = {
     playlists: [],
     selectedPlaylist: {},
-    // gameStatus is 'pre' when selecting playlist, 'active' when playing, 'post' when showing results
+    // gameStatus is 'welcome' for loading screen, 'pre' when selecting playlist, 'active' when playing, 'post' when showing results
     gameStatus: 'welcome',
     currentGame: {},
     trackOutcomes: []
