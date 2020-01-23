@@ -106,7 +106,7 @@ input {
   border: 1px solid #191414;
   background-color: #191414;
   height: 26px;
-  color: white;
+  color: #FFFFFF;
   font-family: 'Work Sans', sans-serif;
 }
 input[type=text]:focus {
@@ -244,7 +244,8 @@ input[type=text]:focus {
 }
 .results-img {
   height: 15px;
-  margin-top: 0px;
+  margin-left: 10px;
+  margin-right: 5px;
   vertical-align: top;
   padding-right: 3px;
 }
@@ -453,7 +454,7 @@ input[type=text]:focus {
   margin: 5px;
 }
 .game-timer{
-  margin: 15px;
+  margin-bottom: 15px;
   width: 100%;
   font-weight: normal;
   color: #A9A9A9;
