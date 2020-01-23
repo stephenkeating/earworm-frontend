@@ -1,5 +1,9 @@
 # EARWORM README
 
+earworm
+Created by Stephen Keating
+https://github.com/stephenkeating
+https://www.linkedin.com/in/stephenmkeating/
 
 Tech Used:
 * React.js
