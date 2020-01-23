@@ -63,6 +63,11 @@ class BodyContainer extends Component  {
   playAgain = () =>{
     this.setState({gameStatus: 'pre', trackOutcomes: []})
   }
+
+  handleLogoClick = () => {
+    this.setState({gameStatus: 'welcome', trackOutcomes: [], selectedPlaylist: {}})
+  }
+  
   
   // renders component based on this.state.gameStatus
   renderGameStatus = () => {
@@ -104,7 +109,7 @@ class BodyContainer extends Component  {
           ? null
           : <div className='logo-bar'>
               <div className='logo-img-div'>
-                <img className='logo-img' src={earWorm} alt="earWorm" />
+                <img className='logo-img' src={earWorm} alt="earWorm" onClick={this.handleLogoClick}/>
               </div>
               <div className='logo-text'>
                 earworm

@@ -22,8 +22,6 @@ class GameContainer extends Component  {
     const filtered = this.props.selectedPlaylist.tracks.filter(track => !track.name.toLowerCase().includes('skit'))
     // Shuffle tracks
     const shuffled = filtered.sort(() => 0.5 - Math.random());
-    // Get sub-array of first 5 elements after shuffling. (Decided to use all tracks rather than just 5)
-    // let selected = shuffled.slice(0, 10)
     this.setState({gameTracks: shuffled})
     this.countdownTimer()
   }
@@ -137,9 +135,6 @@ class GameContainer extends Component  {
       }
     }
   }
-
-    
-  
 
   render (){
     // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')

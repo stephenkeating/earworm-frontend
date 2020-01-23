@@ -6,7 +6,8 @@ class PlaylistForm extends Component{
   }
 
   renderPlaylistFormOptions = () => {
-    return this.props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name.toUpperCase()}</option>)
+    // limiting length of playlist title (currently to 47 chars)
+    return this.props.playlists.map(playlist => <option className='playlist-select-option' value={playlist.name} key={playlist.id}>{playlist.name.substring(0,47).toUpperCase()}</option>)
   }
   
   render() {
@@ -16,7 +17,7 @@ class PlaylistForm extends Component{
           what's your jam?
         </div>
         <select ref={(selectPlaylist) => { this.selectPlaylist = selectPlaylist; }} className='playlist-select-dropdown' value={this.props.selectedPlaylist.name} onChange={(e) => this.props.selectPlaylist(e.target.value)}>
-          <option className='playlist-select-option' defaultValue value='select'>SELECT A PLAYLIST</option>
+          <option className='playlist-select-option' defaultValue value='select'>–&nbsp;SELECT A PLAYLIST&nbsp;–</option>
           {this.renderPlaylistFormOptions()}
         </select>
         <br></br>
