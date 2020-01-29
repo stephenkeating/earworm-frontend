@@ -52,7 +52,7 @@ class GameContainer extends Component  {
       headers: { 
         'content-type': 'application/json',
         'accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        mode: 'no-cors'
       },
       body: JSON.stringify({
         game_id: this.props.currentGame.id,

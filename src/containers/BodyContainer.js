@@ -22,7 +22,7 @@ class BodyContainer extends Component  {
 
   componentDidMount() {
     fetch(PLAYLISTS_URL, {
-      'Access-Control-Allow-Origin': '*'
+      mode: 'no-cors'
     })
     .then(r => r.json())
     // sort playlists by name before throwing them into state
@@ -47,7 +47,7 @@ class BodyContainer extends Component  {
       headers: { 
         'content-type': 'application/json',
         'accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        mode: 'no-cors'
       },
       body: JSON.stringify({
         playlist_id: this.state.selectedPlaylist.id
