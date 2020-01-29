@@ -4,7 +4,7 @@ import GameTimer from '../components/GameTimer';
 import GuessForm from "../components/GuessForm";
 import distance from 'jaro-winkler';
 
-const BASE_URL = 'https://earworm-backend.herokuapp.com/';
+const BASE_URL = 'https://earworm-backend.herokuapp.com';
 const ANSWERS_URL = BASE_URL + '/answers';
 
 class GameContainer extends Component  {

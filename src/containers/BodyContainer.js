@@ -5,7 +5,7 @@ import GameContainer from '../containers/GameContainer.js';
 import ResultsSplash from '../components/ResultsSplash';
 import earWorm from '../EarWorm3.png'; 
 
-const BASE_URL = 'https://earworm-backend.herokuapp.com/';
+const BASE_URL = 'https://earworm-backend.herokuapp.com';
 const PLAYLISTS_URL = BASE_URL + '/playlists';
 const GAMES_URL = BASE_URL + '/games';
 
