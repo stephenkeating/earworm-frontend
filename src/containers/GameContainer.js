@@ -51,7 +51,8 @@ class GameContainer extends Component  {
       method:'POST',
       headers: { 
         'content-type': 'application/json',
-        'accept': 'application/json'
+        'accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
         game_id: this.props.currentGame.id,

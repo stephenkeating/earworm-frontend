@@ -21,7 +21,9 @@ class BodyContainer extends Component  {
   }
 
   componentDidMount() {
-    fetch(PLAYLISTS_URL)
+    fetch(PLAYLISTS_URL, {
+      'Access-Control-Allow-Origin': '*'
+    })
     .then(r => r.json())
     // sort playlists by name before throwing them into state
     .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['name'].localeCompare(b['name']))}))
@@ -44,7 +46,8 @@ class BodyContainer extends Component  {
       method:'POST',
       headers: { 
         'content-type': 'application/json',
-        'accept': 'application/json'
+        'accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
         playlist_id: this.state.selectedPlaylist.id
