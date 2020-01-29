@@ -22,7 +22,7 @@ class BodyContainer extends Component  {
 
   componentDidMount() {
     fetch(PLAYLISTS_URL, {
-      mode: 'no-cors'
+      'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
     })
     .then(r => r.json())
     // sort playlists by name before throwing them into state
@@ -47,7 +47,7 @@ class BodyContainer extends Component  {
       headers: { 
         'content-type': 'application/json',
         'accept': 'application/json',
-        mode: 'no-cors'
+        'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
       },
       body: JSON.stringify({
         playlist_id: this.state.selectedPlaylist.id

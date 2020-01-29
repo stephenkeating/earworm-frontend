@@ -52,7 +52,7 @@ class GameContainer extends Component  {
       headers: { 
         'content-type': 'application/json',
         'accept': 'application/json',
-        mode: 'no-cors'
+        'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
       },
       body: JSON.stringify({
         game_id: this.props.currentGame.id,
