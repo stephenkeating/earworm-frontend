@@ -5,6 +5,10 @@ import GameContainer from '../containers/GameContainer.js';
 import ResultsSplash from '../components/ResultsSplash';
 import earWorm from '../EarWorm3.png'; 
 
+const BASE_URL = 'https://earworm-backend.herokuapp.com/';
+const PLAYLISTS_URL = BASE_URL + '/playlists';
+const GAMES_URL = BASE_URL + '/games';
+
 class BodyContainer extends Component  {
 
   state = {
@@ -17,7 +21,7 @@ class BodyContainer extends Component  {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/playlists`)
+    fetch(PLAYLISTS_URL)
     .then(r => r.json())
     // sort playlists by name before throwing them into state
     .then(playlistsToLoad => this.setState({playlists: playlistsToLoad.sort((a, b) => a['name'].localeCompare(b['name']))}))
@@ -36,7 +40,7 @@ class BodyContainer extends Component  {
   playGame = () => {
     this.setState({gameStatus: 'active'})
 
-    fetch(`http://localhost:3000/games`, {
+    fetch(GAMES_URL, {
       method:'POST',
       headers: { 
         'content-type': 'application/json',

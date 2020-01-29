@@ -4,6 +4,9 @@ import GameTimer from '../components/GameTimer';
 import GuessForm from "../components/GuessForm";
 import distance from 'jaro-winkler';
 
+const BASE_URL = 'https://earworm-backend.herokuapp.com/';
+const ANSWERS_URL = BASE_URL + '/answers';
+
 class GameContainer extends Component  {
 
   state = {
@@ -16,6 +19,8 @@ class GameContainer extends Component  {
     flashVisible: true,
     flashTimeoutID: ''
   }
+
+  
 
   componentDidMount() {
     // filter out tracks with skit in the title
@@ -42,7 +47,7 @@ class GameContainer extends Component  {
 
   // Think about moving the 'answer' post to the end of the game for a one-time create of all outcomes
   trackOutcome = (outcome) => {
-    fetch(`http://localhost:3000/answers`, {
+    fetch(ANSWERS_URL, {
       method:'POST',
       headers: { 
         'content-type': 'application/json',
