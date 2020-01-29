@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import earWormGreen from '../EarWorm3.png'; 
 import earWormRed from '../EarWorm4.png'; 
 
+const BASE_URL = 'https://earworm-backend.herokuapp.com';
+const PLAYLISTS_URL = BASE_URL + '/playlists/';
+const GAMES_URL = BASE_URL + '/games/';
+
 class ResultsSplash extends Component  {
 
   state = {
@@ -52,11 +56,12 @@ class ResultsSplash extends Component  {
       console.log('add a user name!')
     } else {
       this.setState({showForm: false})
-      fetch(`http://localhost:3000/games/${this.props.currentGame.id}`, {
+      fetch(`${GAMES_URL}${this.props.currentGame.id}`, {
         method:'PUT',
         headers: { 
           'content-type': 'application/json',
-          'accept': 'application/json'
+          'accept': 'application/json',
+          'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
         },
         body: JSON.stringify({
           user: this.state.user
@@ -76,7 +81,7 @@ class ResultsSplash extends Component  {
 
   // Called in componentDidMount with this.props.selectedPlaylist.id
   fetchHighScores = (selectedPlaylistId) => {
-    fetch(`http://localhost:3000/playlists/${selectedPlaylistId}`)
+    fetch(`${PLAYLISTS_URL}${selectedPlaylistId}`)
       .then(r => r.json())
       .then(playlistObject => this.setState({topTenHighScores: playlistObject.high_scores.slice(0,10)}))
       .catch(err => console.log(err))
