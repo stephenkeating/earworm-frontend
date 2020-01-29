@@ -81,7 +81,9 @@ class ResultsSplash extends Component  {
 
   // Called in componentDidMount with this.props.selectedPlaylist.id
   fetchHighScores = (selectedPlaylistId) => {
-    fetch(`${PLAYLISTS_URL}${selectedPlaylistId}`)
+    fetch(`${PLAYLISTS_URL}${selectedPlaylistId}`, {
+      'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
+    })
       .then(r => r.json())
       .then(playlistObject => this.setState({topTenHighScores: playlistObject.high_scores.slice(0,10)}))
       .catch(err => console.log(err))
