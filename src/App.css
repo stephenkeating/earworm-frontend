@@ -310,7 +310,7 @@ input[type=text]:focus {
   bottom:0;
   font-weight: bold;
   transition: transform .2s;
-  opacity: 70%;
+  opacity: 0.7;
 }
 .footer-img {
   text-align: center;
@@ -333,7 +333,7 @@ input[type=text]:focus {
   padding: 0;
   margin: 5px;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   transition: 0.3s;
 }
 .playlist-play-button:hover {
@@ -354,7 +354,7 @@ input[type=text]:focus {
   padding: 0;
   margin: 5px;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   transition: 0.3s;
 }
 .submit-guess-button:hover {
@@ -374,7 +374,7 @@ input[type=text]:focus {
   padding: 0;
   margin: 5px;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   transition: 0.3s;
 }
 .submit-results-button:hover {
@@ -397,7 +397,7 @@ input[type=text]:focus {
   padding: 0;
   margin: 5px;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   transition: 0.3s;
 }
 .play-again-button:hover {
@@ -417,7 +417,7 @@ input[type=text]:focus {
   padding: 0;
   margin: 5px;
   border: none;
-  opacity: .7;
+  opacity: 0.7;
   transition: 0.3s;
 }
 .skip-button:hover {
@@ -428,7 +428,7 @@ input[type=text]:focus {
   font-weight: normal;
   font-size: 14px;
   color: #EF2D56;
-  opacity: .7;
+  opacity: 0.7;
   /* letter-spacing: 0.05em; */
 }
 .fadeIn {
