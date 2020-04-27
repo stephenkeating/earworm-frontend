@@ -116,8 +116,8 @@ class GameContainer extends Component  {
       let currentTrackSplitAtComma = this.state.gameTracks[this.state.currentTrack].name.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
       let currentTrackBeforeDash = this.state.gameTracks[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
       let currentTrackBeforeParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
-      let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1] ? this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1].replace(/[^\w]/g, '').toLowerCase() : this.state.gameTracks[this.state.currentTrack].name
-      console.log(currentTrackBetweenParenthesis)
+      let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1] ? this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1].replace(/[^\w]/g, '').toLowerCase() : ''
+      // console.log(currentTrackBetweenParenthesis)
       let currentTrackBeforePtPeriod = this.state.gameTracks[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
       // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
       // let currentTrackAfterParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
@@ -130,6 +130,7 @@ class GameContainer extends Component  {
       if (guess === currentTrackSplitAtComma
         || guess === currentTrackBeforeDash 
         || guess === currentTrackBeforeParenthesis 
+        || guess === currentTrackBetweenParenthesis 
         || guess === currentTrackBeforePtPeriod 
         || jarowBeforePunctuationScore > .9
         || jarowWholeStringScore > .85) {
