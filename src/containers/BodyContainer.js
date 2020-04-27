@@ -22,7 +22,7 @@ class BodyContainer extends Component  {
 
   componentDidMount() {
     fetch(PLAYLISTS_URL, {
-      // 'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
+      'Access-Control-Allow-Origin': 'https://earworm.netlify.com/'
     })
     .then(r => r.json())
     // sort playlists by name before throwing them into state
