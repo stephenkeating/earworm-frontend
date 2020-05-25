@@ -8332,15 +8332,9 @@ react-app-polyfill@^1.0.5:
     whatwg-fetch "^3.0.0"
 
 react-countdown-circle-timer@^1.0.6:
-<<<<<<< HEAD
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-countdown-circle-timer/-/react-countdown-circle-timer-1.2.1.tgz#e7921a4ea9aac069dcede879bd07786557a7a82e"
-  integrity sha512-vjSbsMYzlN0/KY2eN2LHt58zqIR+V2J4q7MyCz/GqSrq0zU8bz3B+It3qb4s4bx/pl6CPIDkMqs7P31xadtIlQ==
-=======
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-countdown-circle-timer/-/react-countdown-circle-timer-1.1.1.tgz#07cdc2c34eb2ca1cc5a723a94e3b3c2f2b7d124d"
   integrity sha512-wt9traVc4Dw4fFKNkXcgd7Ik6J8O8FnEEm8o+ttGGPenLz2EnakhWHB4z48h1WC07HJJDIOpTUnNtjwT12ihOQ==
->>>>>>> c1df896724b1dc2dec0be4ce624779e48d40ac35
   dependencies:
     use-elapsed-time "^1.1.5"
 
@@ -10041,15 +10035,9 @@ url@^0.11.0:
     querystring "0.2.0"
 
 use-elapsed-time@^1.1.5:
-<<<<<<< HEAD
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/use-elapsed-time/-/use-elapsed-time-1.2.1.tgz#5c313ea78be9750a4d7173c7bfe900ee011af730"
-  integrity sha512-dbZ3XXOPMu8KPgr+4Vwhl4XU0m84s4KSIMq+M3mmKWnZrau28YyEi0QCsf/69QznXo1535FlWL8TILWe08IrhQ==
-=======
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/use-elapsed-time/-/use-elapsed-time-1.1.5.tgz#6cac75de60f8d1b0b7310ea5a3acbabd5620e32c"
   integrity sha512-GBi12dcko+IzRnxd9/3xd4SyZVK4z35Bs2heo1g6vOz/l7fo2cOdDUf8cjZP0blekrVAq7hnZxco5jnFcb6EFg==
->>>>>>> c1df896724b1dc2dec0be4ce624779e48d40ac35
 
 use@^3.1.0:
   version "3.1.1"
