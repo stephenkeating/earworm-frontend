@@ -1,23 +1,27 @@
-/* Color Scheme:
-green: #1db954;
-black text: #191414;
-white text: #FFFFFF;
-light gray text: #A9A9A9;
-dark gray: #404040;
-red: #EF2D56;
-*/
+:root {  
+  /* Earworm Color Scheme */
+  --green: #1DB954;
+  --black: #191414;
+  --white: #FFFFFF;
+  --lightGray: #A9A9A9;
+  --darkGray: #404040;
+  --red: #EF2D56;
+
+  /* Example of how to call CSS variables:
+    color: var(--blue);
+  */
+}
 
 html {
-  color: #FFFFFF;
+  color: var(--white);
   width: 98%;
   height: 100%;
-  /* letter-spacing: 0.03em; */
   flex-direction: column;
 
 }
 body {
   font-family: 'Work Sans', sans-serif;
-  background-image: linear-gradient(#404040, #191414);
+  background-image: linear-gradient(var(--darkGray), var(--black));
   background-attachment: fixed;
 }
 a {
@@ -25,7 +29,7 @@ a {
   text-decoration: inherit; 
 }
 a:hover {
-  color: #1db954;
+  color: var(--green);
   text-decoration: inherit; 
 }
 select {
@@ -33,9 +37,8 @@ select {
   padding: 5px;
   font-size: 14px;
   font-weight: bold;
-  /* letter-spacing: 0.05em; */
-  color: #191414;
-  border: 0px solid #191414;
+  color: var(--black);
+  border: 0px solid var(--black);
   font-family: 'Work Sans', sans-serif;
   height: 30px;
   -webkit-appearance: none;
