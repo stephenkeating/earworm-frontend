@@ -65,7 +65,7 @@ select option{
   margin: 20px;
   font-weight: normal;
   font-size: 20px;
-  color: #1db954;
+  color: var(--green);
 }
 .welcome-body {
   margin: 20px;
@@ -80,7 +80,7 @@ select option{
   font-family: 'Work Sans', sans-serif;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background: #1db954;
+  background: var(--green);
   font-size: 13px;
   width: 200px;
   height: 30px;
@@ -145,7 +145,6 @@ input[type=text]:focus {
 .game-container {
   padding: 2%;
   width: 97%;
-  /* margin: 5px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,17 +166,16 @@ input[type=text]:focus {
   margin-bottom: 15px;
   width: 100%;
   font-weight: normal;
-  color: #1db954;
+  color: var(--green);
   font-size: 20px
 }
 .game-instructions-div {
   margin: 5px;
   width: 100%;
-  color: #1db954;
+  color: var(--green);
   text-align: center;
   font-weight: normal;
   font-size: 16px;
-  /* letter-spacing: 0.05em; */
 }
 .guess-form {
   margin-bottom: 15px;
@@ -188,12 +186,10 @@ input[type=text]:focus {
   margin: 15px;
   align-items: flex-end;
   width: 100%;
-  /* height: 200px; */
   vertical-align: baseline;
 }
 .spotify-player {
   vertical-align: middle;
-  /* width: 300px; */
   transform: scale(1.75);
   padding: 5%;
 }
@@ -201,14 +197,13 @@ input[type=text]:focus {
   margin: 10px;
   font-weight: normal;
   font-size: 20px;
-  color: #1db954;
+  color: var(--green);
 }
 .playlist-instructions-body {
   margin: 10px;
   color: #A9A9A9;
   font-weight: normal;
   font-size: 16px;
-  /* letter-spacing: 0.05em; */
 }
 .results-spash {
   width: 100%;
@@ -216,7 +211,7 @@ input[type=text]:focus {
 }
 .results-instructions {
   width: 100%;
-  color: #1db954;
+  color: var(--green);
   justify-content: center;
   margin-bottom: 15px;
   padding: 0px;
@@ -278,7 +273,7 @@ input[type=text]:focus {
 }
 .high-scores-header {
   width: 100%;
-  color: #1db954;
+  color: var(--green);
   justify-content: center;
   text-align: center;
   margin-top: 15px;
@@ -295,7 +290,7 @@ input[type=text]:focus {
   padding-left: 5px;
 }
 .top-score-span {
-  color: #1db954;
+  color: var(--green);
 }
 .footer{
   color: #A9A9A9;
@@ -329,7 +324,7 @@ input[type=text]:focus {
   font-family: 'Work Sans', sans-serif;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background: #1db954;
+  background: var(--green);
   font-size: 13px;
   width: 200px;
   height: 30px;
@@ -350,7 +345,7 @@ input[type=text]:focus {
   border-radius: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
-  background: #1db954;
+  background: var(--green);
   font-size: 13px;
   width: 200px;
   height: 30px;
@@ -368,7 +363,6 @@ input[type=text]:focus {
   color: #FFFFFF;
   border-radius: 20px;
   font-weight: bold;
-  /* font-family: 'Work Sans', sans-serif; */
   letter-spacing: 0.1em;
   background: #A9A9A9;
   font-size: 13px;
@@ -393,7 +387,7 @@ input[type=text]:focus {
   font-weight: bold;
   font-family: 'Work Sans', sans-serif;
   letter-spacing: 0.1em;
-  background: #1db954;
+  background: var(--green);
   font-size: 13px;
   width: 200px;
   height: 30px;
@@ -432,7 +426,6 @@ input[type=text]:focus {
   font-size: 14px;
   color: #EF2D56;
   opacity: 0.7;
-  /* letter-spacing: 0.05em; */
 }
 .fadeIn {
   margin-bottom: 15px;
@@ -451,7 +444,6 @@ input[type=text]:focus {
   margin: 5px;
   width: 100%;
   font-weight: normal;
-  /* letter-spacing: 0.05em; */
 }
 .progress-bar{
   margin: 5px;
@@ -462,22 +454,18 @@ input[type=text]:focus {
   font-weight: normal;
   color: #A9A9A9;
   font-size: 14px;
-  /* letter-spacing: 0.05em; */
 }
 .game-timer-text {
   margin: 5px;
-
 }
 .progress-bar {
   margin: 5px;
-  /* padding: 1px; */
   width: 100%;
   height: 5px;
   background-color: #191414;
   border-radius: 2.5px;
 }
 .inside-progress-bar {
-  /* margin: 2px 2px 2px 2px; */
   width: 100%;
   height: 5px;
   background-color: #A9A9A9;
