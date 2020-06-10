@@ -111,6 +111,9 @@ input {
   height: 26px;
   color: #FFFFFF;
   font-family: 'Work Sans', sans-serif;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 input[type=text]:focus {
   outline: none !important;
