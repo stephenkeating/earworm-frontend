@@ -75,7 +75,7 @@ select option{
   /* letter-spacing: 0.05em; */
 }
 .welcome-play-button {
-  color: #FFFFFF;
+  color: var(--white);
   border-radius: 20px;
   font-family: 'Work Sans', sans-serif;
   font-weight: bold;
@@ -109,7 +109,7 @@ input {
   border: 1px solid #191414;
   background-color: #191414;
   height: 26px;
-  color: #FFFFFF;
+  color: var(--white);
   font-family: 'Work Sans', sans-serif;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -128,7 +128,7 @@ input[type=text]:focus {
   align-items: center
 }
 .logo-bar {
-  color: #FFFFFF;
+  color: var(--white);
   display: flex;
   height: 55px;
   width: 90%;
@@ -322,7 +322,7 @@ input[type=text]:focus {
   transform: scale(1.1);
 }
 .playlist-play-button {
-  color: #FFFFFF;
+  color: var(--white);
   border-radius: 20px;
   font-family: 'Work Sans', sans-serif;
   font-weight: bold;
@@ -343,7 +343,7 @@ input[type=text]:focus {
 }
 .submit-guess-button {
   margin: 5px;
-  color: #FFFFFF;
+  color: var(--white);
   font-family: 'Work Sans', sans-serif;
   border-radius: 20px;
   font-weight: bold;
@@ -363,7 +363,7 @@ input[type=text]:focus {
   transform: scale(1.06);
 }
 .submit-results-button {
-  color: #FFFFFF;
+  color: var(--white);
   border-radius: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
@@ -385,7 +385,7 @@ input[type=text]:focus {
   display: none;
 }
 .play-again-button {
-  color: #FFFFFF;
+  color: var(--white);
   border-radius: 20px;
   font-weight: bold;
   font-family: 'Work Sans', sans-serif;
@@ -406,7 +406,7 @@ input[type=text]:focus {
 }
 .skip-button {
   margin: 5px;
-  color: #FFFFFF;
+  color: var(--white);
   border-radius: 20px;
   font-weight: bold;
   letter-spacing: 0.1em;
