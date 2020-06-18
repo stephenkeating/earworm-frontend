@@ -109,7 +109,6 @@ class BodyContainer extends Component  {
   
 
   render (){
-    // console.log('game container state:', this.state)
     return(
       <div className='main-container'>
         {this.state.gameStatus === 'welcome'
@@ -126,19 +125,11 @@ class BodyContainer extends Component  {
         <div className="game-container">
           {this.renderGameStatus()}
         </div>
-        {/* follow <br> prevents the bottom of the body from sliding below the footer*/}
+        {/* the following <br> prevents the bottom of the body from sliding below the footer*/}
         <br></br>
         {this.state.gameStatus === 'welcome'
           ? null
           : <div className='footer'>
-              {/* <div className='footer-text'>
-                EarWorm App&nbsp; 
-              </div>
-              <div className='footer-img-div'>
-                <a href="https://thenounproject.com/search/?q=Ear&i=659545" target="_blank" rel="noopener noreferrer">
-                  <img className='footer-img' src={earWorm} alt="earWorm" />
-                </a>
-              </div> */}
               <div className='footer-text'>
                 <a href="https://github.com/stephenkeating" target="_blank" rel="noopener noreferrer">CREATED BY STEPHEN KEATING</a>
               </div>
