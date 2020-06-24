@@ -107,6 +107,7 @@ class GameContainer extends Component  {
     this.setState({trackGuess: value})
   }
 
+  // Guessing algorithm
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.trackGuess.length < 1) {
@@ -127,6 +128,8 @@ class GameContainer extends Component  {
       let jarowWholeStringScore = distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })
       // console.log(jarowWholeStringScore)
       // console.log('user\'s guess:', guess)
+      
+      // consider implementing a JS Switch
       if (guess === currentTrackSplitAtComma
         || guess === currentTrackBeforeDash 
         || guess === currentTrackBeforeParenthesis 

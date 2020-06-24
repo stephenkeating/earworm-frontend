@@ -77,6 +77,7 @@ class BodyContainer extends Component  {
   
   
   // renders component based on this.state.gameStatus
+  // consider implementing a JS Switch
   renderGameStatus = () => {
     if (this.state.gameStatus === 'welcome') {
       return <Welcome 
