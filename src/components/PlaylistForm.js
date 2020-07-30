@@ -29,6 +29,7 @@ class PlaylistForm extends Component{
         <div className='playlist-instructions-header'>
           what's your jam?
         </div>
+        <br></br>
         <div className='playlist-instructions-body'>
           Once you press play, you'll have 3 mins to guess as many titles as possible. Skip if you need to, but it will cost you.
         </div>
