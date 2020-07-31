@@ -1,8 +1,7 @@
 # EARWORM README
 
-earworm
 Created by Stephen Keating
-* https://stephenkeating.github.io/keating-portfolio/#/
+* https://stephenkeating.github.io/keating-portfolio/
 * https://github.com/stephenkeating
 * https://www.linkedin.com/in/stephenmkeating/
 
