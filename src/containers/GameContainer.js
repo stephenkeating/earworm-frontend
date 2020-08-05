@@ -20,8 +20,6 @@ class GameContainer extends Component  {
     flashTimeoutID: ''
   }
 
-  
-
   componentDidMount() {
     // filter out tracks with skit in the title
     const filtered = this.props.selectedPlaylist.tracks.filter(track => !track.name.toLowerCase().includes('skit'))
