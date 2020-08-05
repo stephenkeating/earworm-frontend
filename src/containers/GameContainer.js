@@ -86,8 +86,6 @@ class GameContainer extends Component  {
 
   handleSkip = () => {
     this.trackOutcome('Skipped')
-    // this.setState({flashMessage: ("Skipped! That song was: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)})
-    // alert("Skipped!\nThat song was:\n" + this.state.gameTracks[this.state.currentTrack].name)
     this.setState({visible: true, currentTrack: this.state.currentTrack + 1, trackGuess: '', seconds: this.state.seconds - 5})
     this.showFlashMessage("SKIPPED: " + this.state.gameTracks[this.state.currentTrack].name + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
   }
@@ -118,16 +116,11 @@ class GameContainer extends Component  {
       let currentTrackBeforeDash = this.state.gameTracks[this.state.currentTrack].name.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
       let currentTrackBeforeParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
       let currentTrackBetweenParenthesis = this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1] ? this.state.gameTracks[this.state.currentTrack].name.split(/[()]+/)[1].replace(/[^\w]/g, '').toLowerCase() : this.state.gameTracks[this.state.currentTrack].name
-      // console.log(currentTrackBetweenParenthesis)
       let currentTrackBeforePtPeriod = this.state.gameTracks[this.state.currentTrack].name.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
-      // console.log('winning strings: ', currentTrackSplitAtComma, currentTrackBeforeDash, currentTrackBeforeParenthesis)
       // let currentTrackAfterParenthesis = this.state.gameTracks[this.state.currentTrack].name.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
       let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
       let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
-      // console.log(jarowBeforePunctuationScore)
       let jarowWholeStringScore = distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })
-      // console.log(jarowWholeStringScore)
-      // console.log('user\'s guess:', guess)
       
       // consider implementing a JS Switch
       if (guess === currentTrackSplitAtComma
@@ -148,10 +141,6 @@ class GameContainer extends Component  {
   }
 
   render (){
-    // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : '')
-    // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack] : '')
-    // console.log(this.props.currentGame)
-    // console.log(this.state)
     return (
       <div className='game'>
         <div className='game-title-div'>
@@ -180,11 +169,3 @@ class GameContainer extends Component  {
 }
 
 export default GameContainer;
-
-// Testing of various jaro-winkler scores:
-  // console.log(distance(guess, this.state.gameTracks[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
-  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name.replace(/[^\w]/g, ''), { caseSensitive: false })) 
-  // console.log(distance(guess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
-  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
-  // console.log(distance(this.state.trackGuess, this.state.gameTracks[this.state.currentTrack].name, { caseSensitive: false })) 
-  // console.log(distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), this.state.gameTracks[this.state.currentTrack].name.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })) 
