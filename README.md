@@ -1,9 +1,12 @@
 # EARWORM README
 
-earworm
 Created by Stephen Keating
-https://github.com/stephenkeating
-https://www.linkedin.com/in/stephenmkeating/
+* https://stephenkeating.github.io/keating-portfolio/
+* https://github.com/stephenkeating
+* https://www.linkedin.com/in/stephenmkeating/
+
+Short Description:
+* Earworm is a 'name that tune' game built with React and Ruby on Rails. The biggest technical hurdle I overcame on this project was writing a custom algorithm for matching user guess with track titles. 
 
 Tech Used:
 * React.js
