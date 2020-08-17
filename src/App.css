@@ -25,11 +25,11 @@ body {
   background-attachment: fixed;
   height: 100%
 }
-#root, .app, .main-container, .game-container{
+/* #root, .app, .main-container, .game-container{
   height: 100%;
   position: fixed;
   top: 0;
-}
+} */
 a {
   color: inherit; 
   text-decoration: inherit; 
