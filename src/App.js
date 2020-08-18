@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainContainer from './containers/MainContainer';
+import BodyContainer from './containers/BodyContainer.js';
 import "typeface-work-sans";
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <MainContainer />
+        <BodyContainer />
       </div>
     );
   }
