@@ -132,7 +132,7 @@ class BodyContainer extends Component  {
           ? null
           : <div className='footer'>
               <div className='footer-text'>
-                <a href="https://github.com/stephenkeating" target="_blank" rel="noopener noreferrer">CREATED BY STEPHEN KEATING</a>
+                <a href="https://stephenkeating.github.io/keating-portfolio/" target="_blank" rel="noopener noreferrer">CREATED BY STEPHEN KEATING</a>
               </div>
             </div>
         }
