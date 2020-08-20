@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TrackPlayer from '../components/TrackPlayer';
 import GameTimer from '../components/GameTimer';
 import GuessForm from "../components/GuessForm";
-import distance from 'jaro-winkler';
+import GuessAlgorithm from "../components/GuessAlgorithm";
 
 const BASE_URL = 'https://earworm-backend.herokuapp.com';
 const ANSWERS_URL = BASE_URL + '/answers';
@@ -110,25 +110,9 @@ class GameContainer extends Component  {
       this.showFlashMessage("ENTER A GUESS OR SKIP")
     } else {
       let trackName = this.state.gameTracks[this.state.currentTrack].name
-      // Strip punctuation, spaces, and capitalization from track titles and guess to make guessing easier
-      let currentTrackSplitAtComma = trackName.split(',')[0].replace(/[^\w]/g, '').toLowerCase()
-      let currentTrackBeforeDash = trackName.split('-')[0].replace(/[^\w]/g, '').toLowerCase()
-      let currentTrackBeforeParenthesis = trackName.split('(')[0].replace(/[^\w]/g, '').toLowerCase()
-      let currentTrackBetweenParenthesis = trackName.split(/[()]+/)[1] ? trackName.split(/[()]+/)[1].replace(/[^\w]/g, '').toLowerCase() : trackName
-      let currentTrackBeforePtPeriod = trackName.split('Pt.')[0].replace(/[^\w]/g, '').toLowerCase()
-      // let currentTrackAfterParenthesis = trackName.split('(')[1].replace(/[^\w]/g, '').toLowerCase()
       let guess = this.state.trackGuess.replace(/[^\w]/g, '').toLowerCase()
-      let jarowBeforePunctuationScore = distance(this.state.trackGuess.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), trackName.split('(')[0].split('-')[0].replace(/[^\w]/g, ''), { caseSensitive: false })
-      let jarowWholeStringScore = distance(this.state.trackGuess, trackName, { caseSensitive: false })
       
-      // consider implementing a JS Switch
-      if (guess === currentTrackSplitAtComma
-        || guess === currentTrackBeforeDash 
-        || guess === currentTrackBeforeParenthesis 
-        || guess === currentTrackBetweenParenthesis 
-        || guess === currentTrackBeforePtPeriod 
-        || jarowBeforePunctuationScore > .9
-        || jarowWholeStringScore > .85) {
+      if ( GuessAlgorithm(trackName, guess) ) {
         this.trackOutcome('Earworm!')
         this.setState({currentTrack: this.state.currentTrack + 1, trackGuess: ''})
         this.showFlashMessage("EARWORM! " + trackName + ' by ' + this.state.gameTracks[this.state.currentTrack].artists)
