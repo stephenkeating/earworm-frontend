@@ -122,8 +122,8 @@ class GameContainer extends Component  {
       }
     }
   }
-
   render (){
+    console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : null)
     return (
       <div className='game'>
         <div className='game-title-div'>
