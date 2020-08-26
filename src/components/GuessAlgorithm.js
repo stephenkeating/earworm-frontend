@@ -11,17 +11,11 @@ const GuessAlgorithm = (trackName, guess) => {
   let jarowBeforePunctuationScore = distance(guess.split(/[(-]|pt./)[0].replace(/[^\w]/g, ''), lowercaseTrackNameBeforePunctuation, { caseSensitive: false })
   let jarowBetweenParenthesisScore = distance(guess.replace(/[^\w]/g, ''), lowercaseTrackNameBetweenParenthesis, { caseSensitive: false })
   let jarowWholeStringScore = distance(guess, trackName, { caseSensitive: false })
-
-  // console.log(lowercaseTrackName, guess, lowercaseTrackNameBeforePunctuation, lowercaseTrackNameBetweenParenthesis, jarowBeforePunctuationScore, jarowBetweenParenthesisScore, jarowWholeStringScore)
   
   if ( 
-    // consider implementing a JS Switch
-    // guess === lowercaseTrackNameBeforePunctuation|| 
-    // guess === lowercaseTrackNameBetweenParenthesis || 
     jarowBeforePunctuationScore > .91 || 
     jarowWholeStringScore > .89 ||
     jarowBetweenParenthesisScore > .95
-
     ) {
       return true
     } else {
