@@ -103,7 +103,6 @@ class GameContainer extends Component  {
     this.setState({trackGuess: value})
   }
 
-  // Guessing algorithm
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.trackGuess.length < 1) {
@@ -122,8 +121,9 @@ class GameContainer extends Component  {
       }
     }
   }
+
   render (){
-    // console.log(this.state.gameTracks[this.state.currentTrack] ? this.state.gameTracks[this.state.currentTrack].name : null)
+    
     return (
       <div className='game'>
         <div className='game-title-div'>
